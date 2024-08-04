@@ -1,6 +1,6 @@
 streamlit
 pandas
-numpy==1.26.4
+numpy==1.24.4
 catboost
 streamlit_ketcher
 rdkit_pypi==2022.09.3
