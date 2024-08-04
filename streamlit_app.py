@@ -36,7 +36,7 @@ smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
 st.markdown(f"""### Your SMILES: ``{smile_code}``
 Copy and paste this SMILES into the corresponding box below:""")
 
-# model_cat = pickle.load(open('cat.pkl', 'rb'))
+model_cat = pickle.load(open('cat.pkl', 'rb'))
 
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
@@ -63,8 +63,8 @@ if st.button("Predict maximum wavelength(nm)"):
         col1.image(draw_molecule(L1), caption=L1)
         col2.image(draw_molecule(L2), caption=L2)
         col3.image(draw_molecule(L3), caption=L3)
-        # pred = str(round(model_cat.predict(L_res), 1))
-        # st.markdown(f'**{pred} nm**')
+        pred = str(round(model_cat.predict(L_res), 1))
+        st.markdown(f'**{pred} nm**')
         # except:
         #     st.error("Incorrect SMILES entered")
 
