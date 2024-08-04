@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+catboost
+streamlit_ketcher
+rdkit==2022.09.3
+molfeat==0.10.0
