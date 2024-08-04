@@ -1,7 +1,7 @@
 streamlit
 pandas
 numpy
-catboost
 streamlit_ketcher
+catboost==1.2.5
 rdkit_pypi==2022.09.3
 molfeat==0.10.0
