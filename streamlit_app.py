@@ -6,7 +6,7 @@ from rdkit.Chem import Draw
 from streamlit_ketcher import st_ketcher
 
 from molfeat.calc import FPCalculator
-# from catboost import CatBoostRegressor
+from catboost import CatBoostRegressor
 
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
@@ -61,7 +61,7 @@ L3 = col3.text_input(
         key='L3')
 
 if st.button("Predict maximum wavelength(nm)"):
-    if L1 and L2 and L3: 
+    if L1 and L2 and L3:
         # try:
         L_res = calc(Chem.MolFromSmiles(L1)) + calc(Chem.MolFromSmiles(L2)) + calc(Chem.MolFromSmiles(L3))
         col1.image(draw_molecule(L1), caption=L1)
