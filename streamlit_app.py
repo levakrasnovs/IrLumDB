@@ -1,16 +1,12 @@
-import numpy as np
-import pandas as pd
+import pickle
 import streamlit as st
 from rdkit import Chem
-from rdkit.Chem import Draw
 from streamlit_ketcher import st_ketcher
-
 from molfeat.calc import FPCalculator
-from catboost import CatBoostRegressor
 
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
-    return Draw.MolToImage(mol)
+    return Chem.Draw.MolToImage(mol)
 
 def canonize_smiles(smiles):
     return Chem.MolToSmiles(Chem.MolFromSmiles(smiles))
@@ -22,6 +18,7 @@ if "visibility" not in st.session_state:
     st.session_state.disabled = False
 
 st.set_page_config(layout="wide")
+
 # Web App Title
 st.markdown('''
 # **IrLumDB App**
@@ -39,8 +36,7 @@ smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
 st.markdown(f"""### Your SMILES: ``{smile_code}``
 Copy and paste this SMILES into the corresponding box below:""")
 
-# model_cat = CatBoostRegressor()
-# model_cat = model_cat.load_model("CatBoost")
+model_cat = pickle.load(open('cat.pkl', 'rb'))
 
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
@@ -67,14 +63,10 @@ if st.button("Predict maximum wavelength(nm)"):
         col1.image(draw_molecule(L1), caption=L1)
         col2.image(draw_molecule(L2), caption=L2)
         col3.image(draw_molecule(L3), caption=L3)
-        # pred = str(round(model_cat.predict(L_res), 1))
-        # st.markdown(f'**{pred} nm**')
+        pred = str(round(model_cat.predict(L_res), 1))
+        st.markdown(f'**{pred} nm**')
         # except:
         #     st.error("Incorrect SMILES entered")
 
     else:
         st.error("Please enter all three ligands")
-# form.form_submit_button(label="Predict maximum wavelength(nm)")
-
-# with st.spinner("Predict the maximum wavelength for this compound:"):
-#      st.write(L1)
