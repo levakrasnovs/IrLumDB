@@ -36,8 +36,6 @@ smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
 st.markdown(f"""### Your SMILES: ``{smile_code}``
 Copy and paste this SMILES into the corresponding box below:""")
 
-model_cat = pickle.load(open('cat.pkl', 'rb'))
-
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
 
@@ -55,6 +53,8 @@ L3 = col3.text_input(
         "SMILES L3",
         placeholder='CC(=O)/C=C(/C)[O-]',
         key='L3')
+
+model_cat = pickle.load(open('cat.pkl', 'rb'))
 
 if st.button("Predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
