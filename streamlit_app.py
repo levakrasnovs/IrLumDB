@@ -33,9 +33,10 @@ Usage notes:
 ---
 ### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button.
 ''')
-smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
-st.markdown(f"""### Your SMILES: ``{smile_code}``
-Copy and paste this SMILES into the corresponding box below:""")
+smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=500)
+st.markdown(f"""### Your SMILES:""")
+st.code(smile_code, language="")
+st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
 
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
