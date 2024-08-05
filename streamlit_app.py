@@ -99,7 +99,7 @@ df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 
-if st.button("Predict maximum wavelength(nm)/Search in the database"):
+if st.button("Search in the database and predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
         mol1 = Chem.MolFromSmiles(L1)
         mol2 = Chem.MolFromSmiles(L2)
