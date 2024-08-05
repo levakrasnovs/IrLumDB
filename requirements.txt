@@ -1,4 +1,4 @@
-Catboost
+catboost
 lightgbm
 xgboost
 streamlit_ketcher

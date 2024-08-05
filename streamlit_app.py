@@ -5,6 +5,7 @@ from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
 from lightgbm import LGBMRegressor
 from xgboost import XGBRegressor
+from catboost import CatBoostRegressor
 
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
