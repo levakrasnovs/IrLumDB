@@ -3,7 +3,6 @@ import streamlit as st
 from rdkit import Chem
 from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
-from lightgbm import LGBMRegressor
 from xgboost import XGBRegressor
 
 def draw_molecule(smiles):
@@ -56,7 +55,8 @@ L3 = col3.text_input(
         placeholder='CC(=O)/C=C(/C)[O-]',
         key='L3')
 
-model = pickle.load(open('lgbm.pkl', 'rb'))
+model = XGBRegressor()
+model.load_model('xgboost_model.json')
 
 if st.button("Predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
@@ -66,7 +66,7 @@ if st.button("Predict maximum wavelength(nm)"):
         col1.image(draw_molecule(L1), caption=L1)
         col2.image(draw_molecule(L2), caption=L2)
         col3.image(draw_molecule(L3), caption=L3)
-        pred = str(round(model.predict(L_res), 1))
+        pred = str(round(model.predict(L_res)[0], 1))
         st.markdown(f'**{pred} nm**')
         # except:
         #     st.error("Incorrect SMILES entered")
