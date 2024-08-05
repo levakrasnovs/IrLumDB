@@ -95,16 +95,19 @@ model.load_model('xgboost_model.json')
 
 if st.button("Predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
-        # try:
-        L_res = calc(Chem.MolFromSmiles(L1)) + calc(Chem.MolFromSmiles(L2)) + calc(Chem.MolFromSmiles(L3))
-        L_res = L_res.reshape(1, -1)
-        col1.image(draw_molecule(L1), caption=L1)
-        col2.image(draw_molecule(L2), caption=L2)
-        col3.image(draw_molecule(L3), caption=L3)
-        pred = str(round(model.predict(L_res)[0], 1))
-        st.markdown(f'**{pred} nm**')
-        # except:
-        #     st.error("Incorrect SMILES entered")
+        mol1 = Chem.MolFromSmiles(L1)
+        mol2 = Chem.MolFromSmiles(L2)
+        mol3 = Chem.MolFromSmiles(L3)
+        if (mol1 is not None) & (mol2 is not None) & (mol3 is not None):
+            L_res = calc(mol1) + calc(mol2) + calc(mol3)
+            L_res = L_res.reshape(1, -1)
+            col1.image(draw_molecule(L1), caption=L1)
+            col2.image(draw_molecule(L2), caption=L2)
+            col3.image(draw_molecule(L3), caption=L3)
+            pred = str(round(model.predict(L_res)[0], 1))
+            st.markdown(f'**{pred} nm**')
+        else:
+            st.error("Incorrect SMILES entered")
 
     else:
         st.error("Please enter all three ligands")
