@@ -118,10 +118,10 @@ if st.button("Predict maximum wavelength(nm)"):
                 pred = str(round(model.predict(L_res)[0], 1))
                 st.markdown(f'# {pred} nm')
             else:
-                st.markdown(f'# Found this complex in IrLumDB:')
+                st.markdown(f'### Found this complex in IrLumDB:')
                 col1search, col2search, col3search, col4search = st.columns(4)
                 for lam, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
-                    col1search.markdown(f'### {lam} nm')
+                    col1search.markdown(f'**{lam} nm**')
                     col2search.markdown(f'**Solvent: {solvent}**')
                     col3search.markdown(f'**Abbreviation in the source: {abbr}**')
                     col4search.markdown(f'**https://doi.org/{doi}**')
