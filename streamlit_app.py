@@ -1,6 +1,7 @@
 import pickle
 import streamlit as st
 from rdkit import Chem
+from rdkit.Chem import Draw
 from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
 from xgboost import XGBRegressor
@@ -33,13 +34,38 @@ Usage notes:
 
 * The ML model uses only spectroscopic data obtained in dichloromethane solvent, thus the predicted luminescence wavelength is aimed to be also in **dichloromethane solution** of the corresponding complex.
 ---
-### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button.
+### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:
 ''')
+
+exp = st.expander("Popular ligands")
+exp1col, exp2col, exp3col = exp.columns(3)
+with exp:
+    exp1col.image(draw_molecule('[c-]1ccccc1-c1ccccn1'), caption='ppy(-); [c-]1ccccc1-c1ccccn1')
+    exp2col.image(draw_molecule('Fc1c[c-]c(-c2ccccn2)c(F)c1'), caption='dfppy(-); Fc1c[c-]c(-c2ccccn2)c(F)c1')
+    exp3col.image(draw_molecule('[c-]1ccccc1-c1nccc2ccccc12'), caption='piq(-); [c-]1ccccc1-c1nccc2ccccc12')
+    exp1col.image(draw_molecule('[c-]1cccc2ccc3cccnc3c12'), caption='bzq(-); [c-]1cccc2ccc3cccnc3c12')
+    exp2col.image(draw_molecule('c1ccc(-c2ccccn2)nc1'), caption='bpy; c1ccc(-c2ccccn2)nc1')
+    exp3col.image(draw_molecule('c1cnc2c(c1)ccc1cccnc12'), caption='phen; c1cnc2c(c1)ccc1cccnc12')
+    exp1col.image(draw_molecule('[c-]1ccccc1-c1ccc2ccccc2n1'), caption='pq(-); [c-]1ccccc1-c1ccc2ccccc2n1')
+    exp2col.image(draw_molecule('c1ccc(-c2ccnc3c2ccc2c(-c4ccccc4)ccnc23)cc1'), caption='bphen; c1ccc(-c2ccnc3c2ccc2c(-c4ccccc4)ccnc23)cc1')
+    exp3col.image(draw_molecule('c1ccc2nc3c4cccnc4c4ncccc4c3nc2c1'), caption='dppz; c1ccc2nc3c4cccnc4c4ncccc4c3nc2c1')
+    exp1col.image(draw_molecule('CC(=O)/C=C(/C)[O-]'), caption='acac(-); CC(=O)/C=C(/C)[O-]')
+    exp2col.image(draw_molecule('O=C([O-])c1ccccn1'), caption='picolinate; O=C([O-])c1ccccn1')
+    exp3col.image(draw_molecule('O=C(/C=C([O-])/C(C)(C)C)C(C)(C)C'), caption='tmd(-); O=C(/C=C([O-])/C(C)(C)C)C(C)(C)C')
+    exp1col.image(draw_molecule('Cc1ccnc(-c2cc(C)ccn2)c1'), caption='dmbpy; Cc1ccnc(-c2cc(C)ccn2)c1')
 
 smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=500)
 st.markdown(f"""### Your SMILES:""")
 st.code(smile_code, language="")
 st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
+
+with st.expander("Popular ligands"):
+    st.write('''
+        The chart above shows some numbers I picked for you.
+        I rolled actual dice for these, so they're *guaranteed* to
+        be random.
+    ''')
+    st.image("https://static.streamlit.io/examples/dice.jpg")
 
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
