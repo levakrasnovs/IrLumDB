@@ -66,7 +66,7 @@ if st.button("Predict maximum wavelength(nm)"):
         col1.image(draw_molecule(L1), caption=L1)
         col2.image(draw_molecule(L2), caption=L2)
         col3.image(draw_molecule(L3), caption=L3)
-        pred = str(round(model_cat.predict(L_res), 1))
+        pred = str(round(model.predict(L_res), 1))
         st.markdown(f'**{pred} nm**')
         # except:
         #     st.error("Incorrect SMILES entered")
