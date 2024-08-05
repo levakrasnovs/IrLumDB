@@ -1,3 +1,4 @@
+import pandas as pd
 import pickle
 import streamlit as st
 from rdkit import Chem
@@ -93,19 +94,38 @@ L3 = col3.text_input(
 model = XGBRegressor()
 model.load_model('xgboost_model.json')
 
+df = pd.read_csv('BigIrDB_v15.csv')
+df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
+df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
+df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
+
 if st.button("Predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
         mol1 = Chem.MolFromSmiles(L1)
         mol2 = Chem.MolFromSmiles(L2)
         mol3 = Chem.MolFromSmiles(L3)
         if (mol1 is not None) & (mol2 is not None) & (mol3 is not None):
-            L_res = calc(mol1) + calc(mol2) + calc(mol3)
-            L_res = L_res.reshape(1, -1)
-            col1.image(draw_molecule(L1), caption=L1)
-            col2.image(draw_molecule(L2), caption=L2)
-            col3.image(draw_molecule(L3), caption=L3)
-            pred = str(round(model.predict(L_res)[0], 1))
-            st.markdown(f'# {pred} nm')
+            canonize_l1 = Chem.MolToSmiles(mol1)
+            canonize_l2 = Chem.MolToSmiles(mol2)
+            canonize_l3 = Chem.MolToSmiles(mol3)
+            search_df = df[(df['L1'] == canonize_l1) & (df['L2'] == canonize_l2) & (df['L3'] == canonize_l3)]
+            if search_df.shape[0] == 0:
+                L_res = calc(mol1) + calc(mol2) + calc(mol3)
+                L_res = L_res.reshape(1, -1)
+                col1.image(draw_molecule(L1), caption=L1)
+                col2.image(draw_molecule(L2), caption=L2)
+                col3.image(draw_molecule(L3), caption=L3)
+                pred = str(round(model.predict(L_res)[0], 1))
+                st.markdown(f'# {pred} nm')
+            else:
+                st.markdown(f'# Found this complex in IrLumDB:')
+                col1search, col2search, col3search, col4search = st.columns(4)
+                for lam, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
+                    col1search.markdown(f'### {lam} nm')
+                    col2search.markdown(f'**Solvent: {solvent}**')
+                    col3search.markdown(f'**Abbreviation in the source: {abbr}**')
+                    col4search.markdown(f'**https://doi.org/{doi}**')
+
         else:
             st.error("Incorrect SMILES entered")
 
