@@ -56,17 +56,18 @@ L3 = col3.text_input(
         placeholder='CC(=O)/C=C(/C)[O-]',
         key='L3')
 
-# model_cat = pickle.load(open('cat.pkl', 'rb'))
+model = pickle.load(open('lgbm.pkl', 'rb'))
 
 if st.button("Predict maximum wavelength(nm)"):
     if L1 and L2 and L3:
         # try:
         L_res = calc(Chem.MolFromSmiles(L1)) + calc(Chem.MolFromSmiles(L2)) + calc(Chem.MolFromSmiles(L3))
+        L_res = L_res.reshape(1, -1)
         col1.image(draw_molecule(L1), caption=L1)
         col2.image(draw_molecule(L2), caption=L2)
         col3.image(draw_molecule(L3), caption=L3)
-        # pred = str(round(model_cat.predict(L_res), 1))
-        # st.markdown(f'**{pred} nm**')
+        pred = str(round(model_cat.predict(L_res), 1))
+        st.markdown(f'**{pred} nm**')
         # except:
         #     st.error("Incorrect SMILES entered")
 
