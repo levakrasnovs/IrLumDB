@@ -24,15 +24,18 @@ st.set_page_config(layout="wide")
 st.markdown('''
 # **IrLumDB App**
 
-The ”IrLumDB App” is an ML-based service to predict phosphorescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
+The ”IrLumDB App” is an ML-based service to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
 
 Usage notes:
 * The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
 
 * Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
+
+* The ML model uses only spectroscopic data obtained in dichloromethane solvent, thus the predicted luminescence wavelength is aimed to be also in **dichloromethane solution** of the corresponding complex.
 ---
 ### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button.
 ''')
+
 smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=500)
 st.markdown(f"""### Your SMILES:""")
 st.code(smile_code, language="")
