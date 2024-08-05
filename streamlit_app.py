@@ -24,7 +24,7 @@ st.set_page_config(layout="wide")
 
 # Web App Title
 st.markdown('''
-# **IrLumDB App**
+# **IrLumDB App v1.0**
 
 The ”IrLumDB App” is an ML-based service to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
 
@@ -99,7 +99,7 @@ df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 
-if st.button("Predict maximum wavelength(nm)"):
+if st.button("Predict maximum wavelength(nm)/Search in the database"):
     if L1 and L2 and L3:
         mol1 = Chem.MolFromSmiles(L1)
         mol2 = Chem.MolFromSmiles(L2)
