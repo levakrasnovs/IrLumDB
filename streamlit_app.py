@@ -59,14 +59,6 @@ st.markdown(f"""### Your SMILES:""")
 st.code(smile_code, language="")
 st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
 
-with st.expander("Popular ligands"):
-    st.write('''
-        The chart above shows some numbers I picked for you.
-        I rolled actual dice for these, so they're *guaranteed* to
-        be random.
-    ''')
-    st.image("https://static.streamlit.io/examples/dice.jpg")
-
 form = st.form(key="form_settings")
 col1, col2, col3 = st.columns(3)
 
