@@ -1,5 +1,5 @@
 import pandas as pd
-# import plotly.express as px
+import plotly.express as px
 import streamlit as st
 from rdkit import Chem
 from rdkit.Chem import Draw
