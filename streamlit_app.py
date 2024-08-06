@@ -112,13 +112,13 @@ with tabs[0]:
                 canonize_l1 = Chem.MolToSmiles(mol1)
                 canonize_l2 = Chem.MolToSmiles(mol2)
                 canonize_l3 = Chem.MolToSmiles(mol3)
+                col1.image(draw_molecule(L1), caption=L1)
+                col2.image(draw_molecule(L2), caption=L2)
+                col3.image(draw_molecule(L3), caption=L3)
                 search_df = df[(df['L1'] == canonize_l1) & (df['L2'] == canonize_l2) & (df['L3'] == canonize_l3)]
                 if search_df.shape[0] == 0:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
-                    col1.image(draw_molecule(L1), caption=L1)
-                    col2.image(draw_molecule(L2), caption=L2)
-                    col3.image(draw_molecule(L3), caption=L3)
                     pred = str(round(model.predict(L_res)[0], 1))
                     st.markdown(f'# {pred} nm')
                 else:
@@ -136,7 +136,6 @@ with tabs[0]:
 
             else:
                 st.error("Incorrect SMILES entered")
-
         else:
             st.error("Please enter all three ligands")
 
