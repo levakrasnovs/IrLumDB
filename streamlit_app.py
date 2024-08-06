@@ -30,16 +30,9 @@ df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 
 col1intro, col2intro = st.columns(2)
 col1intro.markdown("""
-# IrLumDB App v1.0
+The ”IrLumDB App” is an ML-based service integrated with the experimental database to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature.
 
-The ”IrLumDB App” is an ML-based service to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
-
-Usage notes:
-* The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
-
-* Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
-
-* The ML model uses only spectroscopic data obtained in dichloromethane solvent, thus the predicted luminescence wavelength is aimed to be also in **dichloromethane solution** of the corresponding complex.
+There are currently two operation modes – prediction of luminescence wavelength (“search and predict” window) and exploration of the database (“explore” window).
 """)
 
 col2intro.image('TOC.png')
@@ -48,7 +41,14 @@ tabs = st.tabs(["Search and Predict", "Explore"])
 
 with tabs[0]:
 
-    st.markdown("""### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:""")
+    st.markdown("""Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press “Search in the database and predict maximum wavelength (nm)” button to perform the prediction. If the complex exists in the database, experimental data will be displayed. If the complex does not exist in the database, the predicted luminescence wavelength will appear.
+
+Usage notes:
+* The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
+* Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
+* The ML model uses only spectroscopic data obtained in **dichloromethane solvent**, thus the predicted luminescence wavelength is aimed to be also in dichloromethane solution of the corresponding complex.
+
+    ### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:""")
 
     exp = st.expander("Popular ligands")
     exp1col, exp2col, exp3col = exp.columns(3)
