@@ -1,11 +1,12 @@
 import pandas as pd
-import pickle
+import plotly.express as px
 import streamlit as st
 from rdkit import Chem
 from rdkit.Chem import Draw
+import pickle
+from xgboost import XGBRegressor
 from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
-from xgboost import XGBRegressor
 
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
