@@ -152,7 +152,7 @@ with tabs[1]:
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
 
-    st.markdown('The “IrLumDB” database contains data about **1454** experimentally measured luminescence spectra of **1287** unique iridium(III) complexes reported in the **340** literature papers. To explore the database, please choose the desired emission wavelength interval below (it should not exceed 10 nm).')
+    st.markdown('The “IrLumDB” database contains data about **1454** experimentally measured luminescence spectra of **1287** unique iridium(III) complexes reported in the **340** literature papers. To explore the database, please choose the desired emission wavelength interval below:')
     min_value = df['λlum,nm'].min()
     max_value = df['λlum,nm'].max()
     initial_value = (min_value, max_value)
