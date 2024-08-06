@@ -83,6 +83,8 @@ Usage notes:
         exp3col.image(draw_molecule('O=C(/C=C([O-])/C(C)(C)C)C(C)(C)C'), caption='O=C(/C=C([O-])/C(C)(C)C)C(C)(C)C')
         exp1col.markdown('### dmbpy')
         exp1col.image(draw_molecule('Cc1ccnc(-c2cc(C)ccn2)c1'), caption='Cc1ccnc(-c2cc(C)ccn2)c1')
+        exp2col.markdown('### diMeNHC')
+        exp2col.image(draw_molecule('Cn1[c-][n+](C[n+]2[c-]n(C)cc2)cc1'), caption='Cn1[c-][n+](C[n+]2[c-]n(C)cc2)cc1')
 
     smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
     st.markdown(f"""### Your SMILES:""")
