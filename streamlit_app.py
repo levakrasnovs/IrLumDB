@@ -125,8 +125,8 @@ Usage notes:
                 if search_df.shape[0] == 0:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
-                    pred = str(round(model.predict(L_res)[0], 1))
-                    st.markdown(f'# {pred} nm')
+                    pred = str(int(round(model.predict(L_res)[0], 0)))
+                    st.markdown(f'# Predicted: {pred} nm')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search = st.columns([1, 1, 3, 4])
