@@ -28,23 +28,27 @@ df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 
+col1intro, col2intro = st.columns(2)
+col1intro.markdown("""
+# IrLumDB App v1.0
+
+The ”IrLumDB App” is an ML-based service to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
+
+Usage notes:
+* The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
+
+* Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
+
+* The ML model uses only spectroscopic data obtained in dichloromethane solvent, thus the predicted luminescence wavelength is aimed to be also in **dichloromethane solution** of the corresponding complex.
+""")
+
+col2intro.image('TOC.png')
+
 tabs = st.tabs(["Search and Predict", "Explore"])
+
 with tabs[0]:
 
-    st.markdown('''
-    # IrLumDB App v1.0
-
-    The ”IrLumDB App” is an ML-based service to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature. Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press **“Predict maximum wavelength (nm)”** button to perform the prediction.
-
-    Usage notes:
-    * The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
-
-    * Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
-
-    * The ML model uses only spectroscopic data obtained in dichloromethane solvent, thus the predicted luminescence wavelength is aimed to be also in **dichloromethane solution** of the corresponding complex.
-    ---
-    ### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:
-    ''')
+    st.markdown("""### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:""")
 
     exp = st.expander("Popular ligands")
     exp1col, exp2col, exp3col = exp.columns(3)
@@ -144,13 +148,14 @@ with tabs[1]:
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
 
+    st.markdown('The “IrLumDB” database contains data about **1454** experimentally measured luminescence spectra of **1287** unique iridium(III) complexes reported in the **340** literature papers. To explore the database, please choose the desired emission wavelength interval below (it should not exceed 10 nm).')
     min_value = df['λlum,nm'].min()
     max_value = df['λlum,nm'].max()
     initial_value = (600, 610)
     max_interval_length = 10
 
     slider_value = st.slider(
-        "Choose the desired wavelength range",
+        "",
         min_value=min_value,
         max_value=max_value,
         value=initial_value
