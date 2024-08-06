@@ -161,7 +161,7 @@ with tabs[1]:
     else:
         range_df = df[(df['λlum,nm'] <= slider_value[1]) & (df['λlum,nm'] >= slider_value[0])].sort_values(by='λlum,nm')
         num = str(range_df.shape[0])
-        st.success(f"Selected range: {slider_value}. Found {num} complexes:")
+        st.success(f"Selected range: {slider_value}. Found {num} entries:")
         col1range, col2range, col3range, col4range, col5range, col6range, col7range = st.columns([1, 1, 2, 2, 2, 2, 2])
         col1range.markdown(f'**λlum,nm**')
         col2range.markdown(f'**Solvent:**')
