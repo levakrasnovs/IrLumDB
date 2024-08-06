@@ -34,7 +34,7 @@ col1intro.markdown("""
 
 The ”IrLumDB App” is an ML-based service integrated with the experimental database to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature.
 
-There are currently two operation modes – prediction of luminescence wavelength (“search and predict” window) and exploration of the database (“explore” window).
+### There are currently two operation modes – prediction of luminescence wavelength (“search and predict” window) and exploration of the database (“explore” window).
 """)
 
 col2intro.image('TOC.png')
