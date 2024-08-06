@@ -126,7 +126,7 @@ Usage notes:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
                     pred = str(int(round(model.predict(L_res)[0], 0)))
-                    st.markdown(f'# Predicted: {pred} nm')
+                    st.markdown(f'# Predicted: {pred} nm in dichloromethane')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search = st.columns([1, 1, 3, 4])
