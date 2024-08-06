@@ -89,8 +89,6 @@ Usage notes:
     st.code(smile_code, language="")
     st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
 
-
-    form = st.form(key="form_settings")
     col1, col2, col3 = st.columns(3)
 
     L1 = col1.text_input(
