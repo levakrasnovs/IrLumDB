@@ -147,7 +147,7 @@ with tabs[1]:
 
     min_value = df['λlum,nm'].min()
     max_value = df['λlum,nm'].max()
-    initial_value = (600, 510)
+    initial_value = (600, 610)
     max_interval_length = 10
 
     slider_value = st.slider(
