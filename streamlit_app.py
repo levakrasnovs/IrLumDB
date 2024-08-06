@@ -141,9 +141,9 @@ with tabs[0]:
             st.error("Please enter all three ligands")
 
 with tabs[1]:
-    # fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
-    # fig.update_layout(yaxis_title='Number of entries')
-    # st.plotly_chart(fig)
+    fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
+    fig.update_layout(yaxis_title='Number of entries')
+    st.plotly_chart(fig)
 
     min_value = df['λlum,nm'].min()
     max_value = df['λlum,nm'].max()
