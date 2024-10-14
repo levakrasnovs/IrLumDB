@@ -23,7 +23,7 @@ if "visibility" not in st.session_state:
 
 st.set_page_config(layout="wide")
 
-df = pd.read_csv('BigIrDB_v15.csv')
+df = pd.read_csv('BigIrDB_v17.csv')
 df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))

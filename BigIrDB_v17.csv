@@ -737,8 +737,8 @@ FC(F)(F)c1cc(nc2ccccc12)c1[c-]c2ccccc2s1,FC(F)(F)c1cc(nc2ccccc12)c1[c-]c2ccccc2s
 O=C(OC)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(OC)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,FC(F)(F)[S-](=O)(=O)=O,Ir-OMe,1,660,"0,05","0,24",CH3OH,467,5500,10.1002/adfm.202212390,,
 O=C(OC)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(OC)c1cc(nc2ccccc12)c1[c-]cccc1,O=C1CCC(=O)N1OC(=O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,FC(F)(F)[S-](=O)(=O)=O,Ir-Su,1,660,"0,11","0,24",CH3OH,463,4000,10.1002/adfm.202212390,,
 [O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,2[Na+],Ir-ONa,-2,600,"0,3","1,61",CH3OH,441,6000,10.1002/adfm.202212390,,
-O=C(O)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(O)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,[OH-],Ir-OH,1,660,"0,02","0,15",H2O,456,5500,10.1002/adfm.202212390,,pH3
-[O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,2[Na+],Ir-ONa,-2,620,"0,04","0,32",H2O,436,8000,10.1002/adfm.202212390,,pH8
+O=C(O)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(O)c1cc(nc2ccccc12)c1[c-]cccc1,O=C(O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,[OH-],Ir-OH,1,660,"0,02","0,15",H2O,456,5500,10.1002/adfm.202212390,pH3,pH3
+[O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1cc(nc2ccccc12)c1[c-]cccc1,[O-]C(=O)c1ccc(cc1)n1c2c3cccnc3c3ncccc3c2nc1c1cccc(Br)c1,,2[Na+],Ir-ONa,-2,620,"0,04","0,32",H2O,436,8000,10.1002/adfm.202212390,pH8,pH8
 Fc1cc(F)c([c-]c1)n1cccn1,Fc1cc(F)c([c-]c1)n1cccn1,c1cccc2c1nc(c1ccccn1)n2c1ccccc1,,F[P-](F)(F)(F)(F)F,M-Ir1,1,543,"0,586","2,33",CH3CN,400,1000,10.1039/d2tc03539a,,
 [c-]1ccccc1-c1ccccn1,[c-]1ccccc1-c1ccccn1,CC(N)C([O-])=O,,,Ir1,0,509,"0,48","1,64",CH3CN,454,,10.3390/molecules27238506,,
 Fc1c[c-]c(c2ncccc2)cc1,Fc1c[c-]c(c2ncccc2)cc1,CC(N)C([O-])=O,,,Ir2,0,493,"0,55","1,67",CH3CN,423,,10.3390/molecules27238506,,
@@ -751,13 +751,13 @@ CC(C)N1C2=C(C=CC(OC)=C2)N=C1C3=CC=C(OC)C=[C-]3,CC(C)N1C2=C(C=CC(OC)=C2)N=C1C3=CC
 [c-]1ccccc1-c1ccccn1,[c-]1ccccc1-c1ccccn1,c1ccc(-c2ccccn2)nc1,,[Cl-],3a,1,580,,"0,27",DMF,472,600,10.1016/j.jpap.2021.100084,,
 O=CC(C=C1)=CN=C1C2=CC(C(C=CC=C3)=C3N4CCCCCC)=C4C=[C-]2,O=CC(C=C1)=CN=C1C2=CC(C(C=CC=C3)=C3N4CCCCCC)=C4C=[C-]2,CC(=O)/C=C(/C)[O-],,,3b,0,632,"0,67","0,28",CH2Cl2,550,12800,10.1016/j.jorganchem.2021.122004,,
 CC1=CC(C2=CC(C(F)(F)F)=C(Cl)C=[C-]2)=NC3=C1C=CC=C3,CC1=CC(C2=CC(C(F)(F)F)=C(Cl)C=[C-]2)=NC3=C1C=CC=C3,O=CNC(C1=C2N=CC=C1)=CC3=C2N=CC=C3,,F[P-](F)(F)(F)(F)F,4,1,535,"0,15","2,09",CH2Cl2,,,10.3390/cryst11101190,,
-C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,c1ccc(-c2ccccn2)nc1,,F[P-](F)(F)(F)(F)F,1F,,480,"0,759","4,11",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
+FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,c1ccc(-c2ccccn2)nc1,,F[P-](F)(F)(F)(F)F,1F,,480,"0,759","4,11",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
 CN1N=C(C2C=CC=C[C-]=2)NN1,CN1N=C(C2C=CC=C[C-]=2)NN1,c1ccc(-c2ccccn2)nc1,,F[P-](F)(F)(F)(F)F,1,,545,"0,548","1,22",CH3CN,,,10.1021/ic500999k,,
-C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C1=CN=C(C2=NC=CC(C(C)(C)C)=C2)C=C1C(C)(C)C,,F[P-](F)(F)(F)(F)F,2F,,480,"0,576","4,9",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
+FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,C1=CN=C(C2=NC=CC(C(C)(C)C)=C2)C=C1C(C)(C)C,,F[P-](F)(F)(F)(F)F,2F,,480,"0,576","4,9",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
 CN1N=C(C2C=CC=C[C-]=2)NN1,CN1N=C(C2C=CC=C[C-]=2)NN1,C1=CN=C(C2=NC=CC(C(C)(C)C)=C2)C=C1C(C)(C)C,,F[P-](F)(F)(F)(F)F,2,,530,"0,676","1,18",CH3CN,,,10.1021/ic500999k,,
-C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,c1cnc2c(c1)ccc1cccnc12,,F[P-](F)(F)(F)(F)F,3F,,459,"0,563","43,8",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
+FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,c1cnc2c(c1)ccc1cccnc12,,F[P-](F)(F)(F)(F)F,3F,,459,"0,563","43,8",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
 CN1N=C(C2C=CC=C[C-]=2)NN1,CN1N=C(C2C=CC=C[C-]=2)NN1,c1cnc2c(c1)ccc1cccnc12,,F[P-](F)(F)(F)(F)F,3,,540,"0,703","1,67",CH3CN,,,10.1021/ic500999k,,
-C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C(F)1=CC(F)=C[C-]=C1C1NNN(C)N=1,C1=CN=C(C2=NC=CC(N(C)C)=C2)C=C1N(C)C,,F[P-](F)(F)(F)(F)F,4F,,500,"0,402","10,3",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
+FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,FC1=CC(F)=C[C-]=C1C2=NN(C)N=N2,C1=CN=C(C2=NC=CC(N(C)C)=C2)C=C1N(C)C,,F[P-](F)(F)(F)(F)F,4F,,500,"0,402","10,3",CH3CN,,,10.1021/acs.inorgchem.0c01995,,
 C1=CN=C(C2=[C-]C3P(C4=CC=CC=C4)(=O)C4C=CSC=4C=3S2)C=C1,C1=CN=C(C2=[C-]C3P(C4=CC=CC=C4)(=O)C4C=CSC=4C=3S2)C=C1,CC(=O)/C=C(/C)[O-],,,P-Ir-P,,519,"0,09","0,00515",CH2Cl2,502,"2187,761624",10.1039/d0dt00102c,The emission is claimed to be fluorescence,The emission is claimed to be fluorescence
 C1=CN=C(C2=[C-]C3P(C4=CC=CC=C4)(=O)C4C=CSC=4C=3S2)C=C1,C1=CC=C(C2=CC=C(N(C3=CC=CC=C3)C3=CC=CC=C3)C=[C-]2)N=C1,CC(=O)/C=C(/C)[O-],,,P-Ir-T,,517,"0,06","0,00702",CH2Cl2,506,"3548,133892",10.1039/d0dt00102c,The emission is claimed to be fluorescence,The emission is claimed to be fluorescence
 C1=CN=C(C2=[C-]C3P(C4=CC=CC=C4)(=O)C4C=CSC=4C=3S2)C=C1,C1=CC=C(C2=CC=C(N3C4=C(C5=CC=CC=C35)C=CC=C4)C=[C-]2)N=C1,CC(=O)/C=C(/C)[O-],,,P-Ir-C,,523,"0,09","0,00516",CH2Cl2,500,"2951,209227",10.1039/d0dt00102c,The emission is claimed to be fluorescence,The emission is claimed to be fluorescence
@@ -999,8 +999,8 @@ Fc1c[c-]c(-c2ccccn2)c(F)c1,Fc1c[c-]c(-c2ccccn2)c(F)c1,Cc1ccnc(-c2cc(CO)ccn2)c1,,
 [c-]1ccsc1-c1ccccn1,[c-]1ccsc1-c1ccccn1,Cc1ccnc(-c2cc(CO)ccn2)c1,,F[P-](F)(F)(F)(F)F,3b,,603,"0,043","0,1476",CH2Cl2,,,10.1002/chem.201703157,,
 COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,CC(C)(C)c1ccnc(-c2cc(C(C)(C)C)ccn2)c1,,F[P-](F)(F)(F)(F)F,1,,515,"0,81","1,36",CH3CN,,,10.1039/C7TC03110F,,
 COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,CC(C)(C)c1ccnc(-c2cc(C(C)(C)C)ccn2)c1,,F[P-](F)(F)(F)(F)F,2,,454,"0,77","4,21",CH3CN,,,10.1039/C7TC03110F,,
-COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,c1ccc2c(c1)Cn1ccnc1-c1nccn1-2,,F[P-](F)(F)(F)(F)F,3,,475,"0,8","9,01",CH3CN,,,10.1039/C7TC03110F,,
-COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,c1ccc2c(c1)Cn1ccnc1-c1nccn1-2,,F[P-](F)(F)(F)(F)F,4,,457,"0,73","4,77",CH3CN,,,10.1039/C7TC03110F,,
+COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,COc1n[c-]c(-c2cc(C)ccn2)c(OC)n1,c1(C2)c(Cn3c(c4n2ccn4)ncc3)cccc1,,F[P-](F)(F)(F)(F)F,3,,475,"0,8","9,01",CH3CN,,,10.1039/C7TC03110F,,
+COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,COc1n[c-]c(-c2ccc(C(F)(F)F)cn2)c(OC)n1,c1(C2)c(Cn3c(c4n2ccn4)ncc3)cccc1,,F[P-](F)(F)(F)(F)F,4,,457,"0,73","4,77",CH3CN,,,10.1039/C7TC03110F,,
 [c-]1ccccc1-c1ccccn1,[c-]1ccccc1-c1ccccn1,O=[N+]([O-])c1ccc(-c2nc3c4cccnc4c4ncccc4c3o2)cc1,,F[P-](F)(F)(F)(F)F,1,,530,,,CH3CN,,,10.1021/acs.inorgchem.7b01472,,
 [c-]1ccccc1-c1ccccn1,[c-]1ccccc1-c1ccccn1,Brc1ccc(-c2nc3c4cccnc4c4ncccc4c3o2)cc1,,F[P-](F)(F)(F)(F)F,2,,600,"0,16","0,36",CH3CN,,,10.1021/acs.inorgchem.7b01472,,
 [c-]1ccccc1-c1ccccn1,[c-]1ccccc1-c1ccccn1,c1ccc(-c2nc3c4cccnc4c4ncccc4c3o2)cc1,,F[P-](F)(F)(F)(F)F,3,,600,"0,21","0,37",CH3CN,,,10.1021/acs.inorgchem.7b01472,,
@@ -1108,7 +1108,7 @@ C12=CC=CC=C1C=CN=C2C3=CC=CC=[C-]3,C12=CC=CC=C1C=CN=C2C3=CC=CC=[C-]3,CCCCCCCCC(C1
 FC1=CC(F)=C[C-]=C1C2=NC=CC=C2,FC1=CC(F)=C[C-]=C1C2=NC=CC=C2,N1(CN2N=CC=C2)C=CC=N1,,F[P-](F)(F)(F)(F)F,1,1,456,"0,2","1,38",CH3CN,,,10.1016/j.dyepig.2016.06.039,,
 FC1=CC(F)=C[C-]=C1C2=NC=CC(C)=C2,FC1=CC(F)=C[C-]=C1C2=NC=CC(C)=C2,N1(CN2N=CC=C2)C=CC=N1,,F[P-](F)(F)(F)(F)F,2,1,453,"0,12","1,37",CH3CN,,,10.1016/j.dyepig.2016.06.039,,
 C1(C2=CC=C(C3=CC=C(N(C4=CC=CC=C4)C5=CC=CC=C5)C=C3)C=[C-]2)=NC=CC=C1,C1(C2=CC=C(C3=CC=C(N(C4=CC=CC=C4)C5=CC=CC=C5)C=C3)C=[C-]2)=NC=CC=C1,c1cnc2c(c1)ccc1cccnc12,,F[P-](F)(F)(F)(F)F,[(PPPA)2Ir(Phen)]PF6,1,612,"0,0051",,CH3CN,,,10.1016/j.jlumin.2023.119721,,
-ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,OC(C1=NC=CN=C1)=O,,,1,,584,,"6,92",CH2Cl2,,,10.1016/j.poly.2016.07.031,,
+ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,O=C([O-])c1cnccn1,,,1,,584,,"6,92",CH2Cl2,,,10.1016/j.poly.2016.07.031,,
 ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,C1(C2=NC=CN2)=NC=CN1,,[Cl-],2,1,578,,"4,98",CH2Cl2,,,10.1016/j.poly.2016.07.031,,
 ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,c1ccc(-c2ccccn2)nc1,,[Cl-],3,1,582,,"4,21",,,,10.1016/j.poly.2016.07.031,,
 ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,ClC(C=C1)=CC2=C1N=C(C3=[C-]C=C(OC)C=C3)C=C2C4=CC=CC=C4,P(C1=CC=CC=C1)(C2=CC=CC=C2)CCP(C3=CC=CC=C3)C4=CC=CC=C4,,[Cl-],4,1,544,,"0,25",,,,10.1016/j.poly.2016.07.031,,
