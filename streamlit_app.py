@@ -168,31 +168,32 @@ with tabs[1]:
     # if (slider_value[1] - slider_value[0]) > max_interval_length:
     #     st.warning(f"The interval should not exceed the range of {max_interval_length} nm")
     # else:
-    range_df = df[(df['λlum,nm'] <= slider_value[1]) & (df['λlum,nm'] >= slider_value[0])].sort_values(by='λlum,nm')
-    num = str(range_df.shape[0])
-    st.success(f"Selected range: {slider_value}. Found {num} entries:")
-    col1range, col2range, col3range, col4range, col5range, col6range, col7range = st.columns([1, 1, 2, 2, 2, 2, 2])
-    col1range.markdown(f'**λlum,nm**')
-    col2range.markdown(f'**Solvent:**')
-    col3range.markdown(f'**Abbreviation in the source:**')
-    col4range.markdown(f'**Source**')
-    col5range.markdown(f'**L1**')
-    col6range.markdown(f'**L2**')
-    col7range.markdown(f'**L3**')
+    if st.button("Set wavelength range"):
+        range_df = df[(df['λlum,nm'] <= slider_value[1]) & (df['λlum,nm'] >= slider_value[0])].sort_values(by='λlum,nm')
+        num = str(range_df.shape[0])
+        st.success(f"Selected range: {slider_value}. Found {num} entries:")
+        col1range, col2range, col3range, col4range, col5range, col6range, col7range = st.columns([1, 1, 2, 2, 2, 2, 2])
+        col1range.markdown(f'**λlum,nm**')
+        col2range.markdown(f'**Solvent:**')
+        col3range.markdown(f'**Abbreviation in the source:**')
+        col4range.markdown(f'**Source**')
+        col5range.markdown(f'**L1**')
+        col6range.markdown(f'**L2**')
+        col7range.markdown(f'**L3**')
 
-    for lam, solvent, doi, abbr, L1, L2, L3 in zip(range_df['λlum,nm'],
-                                                   range_df['solvent'],
-                                                   range_df['DOI'],
-                                                   range_df['Abbreviation_in_the_article'],
-                                                   range_df['L1'],
-                                                   range_df['L2'],
-                                                   range_df['L3']):
+        for lam, solvent, doi, abbr, L1, L2, L3 in zip(range_df['λlum,nm'],
+                                                       range_df['solvent'],
+                                                       range_df['DOI'],
+                                                       range_df['Abbreviation_in_the_article'],
+                                                       range_df['L1'],
+                                                       range_df['L2'],
+                                                       range_df['L3']):
 
-        col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 2, 2, 2, 2, 2])
-        col1.markdown(f'**{lam} nm**')
-        col2.markdown(f'**{solvent}**')
-        col3.markdown(f'**{abbr}**')
-        col4.markdown(f'**https://doi.org/{doi}**')
-        col5.image(draw_molecule(L1), caption=L1)
-        col6.image(draw_molecule(L2), caption=L2)
-        col7.image(draw_molecule(L3), caption=L3)
+            col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 2, 2, 2, 2, 2])
+            col1.markdown(f'**{lam} nm**')
+            col2.markdown(f'**{solvent}**')
+            col3.markdown(f'**{abbr}**')
+            col4.markdown(f'**https://doi.org/{doi}**')
+            col5.image(draw_molecule(L1), caption=L1)
+            col6.image(draw_molecule(L2), caption=L2)
+            col7.image(draw_molecule(L3), caption=L3)
