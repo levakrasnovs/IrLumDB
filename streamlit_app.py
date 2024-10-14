@@ -88,8 +88,7 @@ Usage notes:
 
     smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
     st.markdown(f"""### Your SMILES:""")
-    col_smi1, col_smi2, col_smi3 = st.columns(3)
-    col_smi1.code(smile_code, language="")
+    st.code(smile_code, language="")
     st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
 
     col1, col2, col3 = st.columns(3)
