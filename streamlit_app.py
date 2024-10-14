@@ -21,7 +21,7 @@ if "visibility" not in st.session_state:
     st.session_state.visibility = "visible"
     st.session_state.disabled = False
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title='IrLumDB', layout="wide")
 
 df = pd.read_csv('BigIrDB_v17.csv')
 df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
@@ -88,7 +88,8 @@ Usage notes:
 
     smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
     st.markdown(f"""### Your SMILES:""")
-    st.code(smile_code, language="")
+    col_smi, _ = st.columns(2)
+    col_smi.code(smile_code, language="")
     st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
 
     col1, col2, col3 = st.columns(3)
