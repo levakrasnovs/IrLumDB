@@ -161,10 +161,9 @@ with tabs[1]:
     if click_data:
         # Получаем индекс точки, на которую кликнули
         point_index = click_data['points'][0]['pointIndex']
-    
+
     # Открываем соответствующую ссылку
     doi = df['DOI'][point_index]
-    st.write(f"Открываем ссылку: {url}")
     st.markdown(f"Open link [Paper](https://doi.org/{doi}) для дополнительной информации.")
 
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
