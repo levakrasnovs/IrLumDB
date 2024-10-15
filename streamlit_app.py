@@ -27,6 +27,9 @@ df = pd.read_csv('BigIrDB_v17.csv')
 df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
+lum = df[['λlum,nm', 'QY', 'solvent']]
+lum = lum[~lum['QY'].isna()]
+lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 
 col1intro, col2intro = st.columns(2)
 col1intro.markdown("""
@@ -148,6 +151,9 @@ Usage notes:
             st.error("Please enter all three ligands")
 
 with tabs[1]:
+    fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent")
+    fig_lum.update_layout(yaxis_title='Quantum yield')
+    st.plotly_chart(fig_lum)
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
