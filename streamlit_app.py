@@ -32,7 +32,7 @@ lum = lum[~lum['QY'].isna()]
 lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
 
-col1intro, col2intro = st.columns(2)
+col1intro, col2intro = st.columns([2, 1])
 col1intro.markdown("""
 # IrLumDB App v1.0
 
