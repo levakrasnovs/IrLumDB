@@ -155,7 +155,18 @@ Usage notes:
 with tabs[1]:
     fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
     fig_lum.update_layout(yaxis_title='Quantum yield')
-    st.plotly_chart(fig_lum)
+    click_data = st.plotly_chart(fig_lum)
+
+    # Обработка кликов по точкам
+    if click_data:
+        # Получаем индекс точки, на которую кликнули
+        point_index = click_data['points'][0]['pointIndex']
+    
+    # Открываем соответствующую ссылку
+    doi = df['DOI'][point_index]
+    st.write(f"Открываем ссылку: {url}")
+    st.markdown(f"Open link [Paper](https://doi.org/{doi}) для дополнительной информации.")
+
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
