@@ -197,7 +197,7 @@ Usage notes:
                     col3search.markdown(f'**Abbreviation in the source:**')
                     col4search.markdown(f'**Source**')
                     for lam, qy, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['QY'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
-                        col1result, col2result, col3result, col4result = st.columns([1, 1, 1, 3, 4])
+                        col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
                         col1result.markdown(f'**{lam} nm**')
                         col2result.markdown(f'**{qy} nm**')
                         col3result.markdown(f'**{solvent}**')
