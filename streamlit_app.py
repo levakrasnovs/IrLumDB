@@ -158,13 +158,13 @@ with tabs[1]:
     click_data = st.plotly_chart(fig_lum)
 
     # Обработка кликов по точкам
-    if click_data:
+    if click_data is not None
         # Получаем индекс точки, на которую кликнули
         point_index = click_data['points'][0]['pointIndex']
 
     # Открываем соответствующую ссылку
-    doi = df['DOI'][point_index]
-    st.markdown(f"Open link [Paper](https://doi.org/{doi}) для дополнительной информации.")
+        doi = df['DOI'][point_index]
+        st.markdown(f"Open link [Paper](https://doi.org/{doi}) для дополнительной информации.")
 
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
     fig.update_layout(yaxis_title='Number of entries')
