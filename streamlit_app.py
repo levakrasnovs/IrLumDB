@@ -158,7 +158,7 @@ with tabs[1]:
     click_data = st.plotly_chart(fig_lum)
 
     # Обработка кликов по точкам
-    if click_data is not None
+    if click_data is not None:
         # Получаем индекс точки, на которую кликнули
         point_index = click_data['points'][0]['pointIndex']
 
