@@ -196,12 +196,13 @@ Usage notes:
                     col2search.markdown(f'**Solvent:**')
                     col3search.markdown(f'**Abbreviation in the source:**')
                     col4search.markdown(f'**Source**')
-                    for lam, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
-                        col1result, col2result, col3result, col4result = st.columns([1, 1, 3, 4])
+                    for lam, qy, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['QY'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
+                        col1result, col2result, col3result, col4result = st.columns([1, 1, 1, 3, 4])
                         col1result.markdown(f'**{lam} nm**')
-                        col2result.markdown(f'**{solvent}**')
-                        col3result.markdown(f'**{abbr}**')
-                        col4result.markdown(f'**https://doi.org/{doi}**')
+                        col2result.markdown(f'**{qy} nm**')
+                        col3result.markdown(f'**{solvent}**')
+                        col4result.markdown(f'**{abbr}**')
+                        col5result.markdown(f'**https://doi.org/{doi}**')
             else:
                 st.error("Incorrect SMILES entered")
         else:
