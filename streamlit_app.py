@@ -31,6 +31,8 @@ lum = df[['λlum,nm', 'QY', 'solvent']]
 lum = lum[~lum['QY'].isna()]
 lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
+lum = df[['λlum,nm', 'QY', 'solvent', 'DOI']]
+lum['DOI'] = lum['DOI'].apply(lambda x: f'https://doi.org/{x}')
 
 col1intro, col2intro = st.columns(2)
 col1intro.markdown("""
@@ -152,7 +154,7 @@ Usage notes:
             st.error("Please enter all three ligands")
 
 with tabs[1]:
-    fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent")
+    fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
     fig_lum.update_layout(yaxis_title='Quantum yield')
     st.plotly_chart(fig_lum)
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
