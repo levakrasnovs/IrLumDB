@@ -52,6 +52,10 @@ with tabs[0]:
     fig_lum.update_layout(yaxis_title='Quantum yield')
     st.plotly_chart(fig_lum)
 
+    fig_qy = px.histogram(lum, x='QY', nbins=64, title='Quantum yield distribution in the IrLumDB')
+    fig_qy.update_layout(yaxis_title='Number of entries')
+    st.plotly_chart(fig_qy)
+
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
