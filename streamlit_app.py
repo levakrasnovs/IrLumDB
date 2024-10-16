@@ -55,6 +55,7 @@ with tabs[0]:
 
     fig_qy = px.histogram(lum, x='QY', nbins=64, title='PLQY distribution in the IrLumDB')
     fig_qy.update_layout(yaxis_title='Number of entries')
+    fig_qy.update_layout(xaxis_title='PLQY')
     st.plotly_chart(fig_qy)
 
     fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
@@ -147,7 +148,7 @@ Usage notes:
         exp2col.markdown('### diMeNHC')
         exp2col.image(draw_molecule('Cn1[c-][n+](C[n+]2[c-]n(C)cc2)cc1'), caption='Cn1[c-][n+](C[n+]2[c-]n(C)cc2)cc1')
 
-    smile_code = st_ketcher('[c-]1ccccc1-c1ccccn1', height=400)
+    smile_code = st_ketcher(height=400)
     st.markdown(f"""### Your SMILES:""")
     st.markdown(f"``{smile_code}``")
     st.markdown(f"""### Copy and paste this SMILES into the corresponding box below:""")
