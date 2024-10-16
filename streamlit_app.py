@@ -28,7 +28,7 @@ df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 lum = df[['λlum,nm', 'QY', 'solvent', 'DOI', 'ZEROS']]
-lum = lum[~lum['ZEROS'] == 0]
+lum = lum[lum['ZEROS'] != 0]
 lum = lum[~lum['QY'].isna()]
 lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
