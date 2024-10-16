@@ -28,6 +28,7 @@ df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
 df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
 df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
 lum = df[['λlum,nm', 'QY', 'solvent', 'DOI']]
+lum = lum[~lum['ZEROS'] == 0]
 lum = lum[~lum['QY'].isna()]
 lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
@@ -49,10 +50,10 @@ tabs = st.tabs(["Explore", "Search and Predict"])
 
 with tabs[0]:
     fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
-    fig_lum.update_layout(yaxis_title='Quantum yield')
+    fig_lum.update_layout(yaxis_title='PLQY')
     st.plotly_chart(fig_lum)
 
-    fig_qy = px.histogram(lum, x='QY', nbins=64, title='Quantum yield distribution in the IrLumDB')
+    fig_qy = px.histogram(lum, x='QY', nbins=64, title='PLQY distribution in the IrLumDB')
     fig_qy.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig_qy)
 
@@ -199,7 +200,7 @@ Usage notes:
                     for lam, qy, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['QY'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
                         col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
                         col1result.markdown(f'**{lam} nm**')
-                        col2result.markdown(f'**{qy} nm**')
+                        col2result.markdown(f'**{qy}**')
                         col3result.markdown(f'**{solvent}**')
                         col4result.markdown(f'**{abbr}**')
                         col5result.markdown(f'**https://doi.org/{doi}**')
