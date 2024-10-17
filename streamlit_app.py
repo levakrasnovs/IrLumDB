@@ -192,8 +192,8 @@ Usage notes:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
                     pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
-                    pred_plqy = model_plqy.predict(L_res)[0]*100
-                    str_plqy = str(pred_plqy, 3)
+                    pred_plqy = round(model_plqy.predict(L_res)[0]*100, 1)
+                    str_plqy = str(pred_plqy)
                     predcol1, predcol2 = st.columns(2)
                     predcol1.markdown(f'## Predicted luminescence wavelength:')
                     predcol2.markdown(f'## Predicted PLQY:')
