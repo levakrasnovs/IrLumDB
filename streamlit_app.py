@@ -196,8 +196,8 @@ Usage notes:
                     predcol1, predcol2 = st.columns(2)
                     predcol1.markdown(f'# Predicted luminescence wavelength in dichloromethane:')
                     predcol2.markdown(f'# Predicted PLQY in dichloromethane:')
-                    predcol1.markdown(f'``{pred_lum}`` nm')
-                    predcol2.markdown(f'``{pred_plqy}``')
+                    predcol1.markdown(f'### {pred_lum} nm')
+                    predcol2.markdown(f'### {pred_plqy}``')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
