@@ -192,12 +192,22 @@ Usage notes:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
                     pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
-                    pred_plqy = str(round(model_plqy.predict(L_res)[0], 3))
+                    pred_plqy = model_plqy.predict(L_res)[0]*100
+                    str_plqy = str(pred_plqy, 3)
                     predcol1, predcol2 = st.columns(2)
                     predcol1.markdown(f'## Predicted luminescence wavelength:')
                     predcol2.markdown(f'## Predicted PLQY:')
                     predcol1.markdown(f'### {pred_lum} nm in dichloromethane')
-                    predcol2.markdown(f'### {pred_plqy} in dichloromethane')
+                    predcol2.markdown(f'### {str_plqy}% in dichloromethane')
+                    if pred_plqy <= 10:
+                        predcol2.image('low_qy.png')
+                        predcol2.markdown(f'### Low PLQY (0-10%)')
+                    elif 50 >= pred_plqy > 10:
+                        predcol2.image('moderate_qy.png')
+                        predcol2.markdown(f'### Moderate PLQY (10-50%)')
+                    else:
+                        predcol2.image('high_qy.png')
+                        predcol2.markdown(f'### High PLQY (10-50%)')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
