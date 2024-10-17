@@ -200,14 +200,14 @@ Usage notes:
                     predcol1.markdown(f'### {pred_lum} nm in dichloromethane')
                     predcol2.markdown(f'### {str_plqy}% in dichloromethane')
                     if pred_plqy <= 10:
-                        predcol2.image('low_qy.png', width=50)
+                        predcol2.image('low_qy.png', width=200)
                         predcol2.markdown(f'### Low PLQY (0-10%)')
                     elif 50 >= pred_plqy > 10:
-                        predcol2.image('moderate_qy.png', width=50)
+                        predcol2.image('moderate_qy.png', width=200)
                         predcol2.markdown(f'### Moderate PLQY (10-50%)')
                     else:
-                        predcol2.image('high_qy.png', width=50)
-                        predcol2.markdown(f'### High PLQY (10-50%)')
+                        predcol2.image('high_qy.png', width=200)
+                        predcol2.markdown(f'### High PLQY (50-100%)')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
