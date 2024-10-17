@@ -193,8 +193,11 @@ Usage notes:
                     L_res = L_res.reshape(1, -1)
                     pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
                     pred_plqy = str(round(model_plqy.predict(L_res)[0], 3))
-                    st.markdown(f'# Predicted luminescence wavelength: {pred_lum} nm in dichloromethane')
-                    st.markdown(f'# Predicted PLQY: {pred_plqy} in dichloromethane')
+                    predcol1, predcol2 = st.columns(2)
+                    predcol1.markdown(f'# Predicted luminescence wavelength in dichloromethane:')
+                    predcol2.markdown(f'# Predicted PLQY in dichloromethane:')
+                    predcol1.markdown(f'``{pred_lum}`` nm')
+                    predcol2.markdown(f'``{pred_plqy}``')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
                     col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
