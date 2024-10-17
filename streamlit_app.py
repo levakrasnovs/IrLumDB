@@ -170,14 +170,16 @@ Usage notes:
             placeholder='CC(=O)/C=C(/C)[O-]',
             key='L3')
 
-    model = XGBRegressor()
-    model.load_model('xgboost_model.json')
+    model_lum = XGBRegressor()
+    model_lum.load_model('xgboost_lum.json')
+    model_plqy = XGBRegressor()
+    model_plqy.load_model('xgboost_plqy.json')
 
     if st.button("Search in the database and predict maximum wavelength(nm)"):
         if L1 and L2 and L3:
-            mol1 = Chem.MolFromSmiles(L1)
-            mol2 = Chem.MolFromSmiles(L2)
-            mol3 = Chem.MolFromSmiles(L3)
+            mol1 = Chem.MolFromSmiles(L1.strip())
+            mol2 = Chem.MolFromSmiles(L2.strip())
+            mol3 = Chem.MolFromSmiles(L3.strip())
             if (mol1 is not None) & (mol2 is not None) & (mol3 is not None):
                 canonize_l1 = Chem.MolToSmiles(mol1)
                 canonize_l2 = Chem.MolToSmiles(mol2)
@@ -189,12 +191,15 @@ Usage notes:
                 if search_df.shape[0] == 0:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
-                    pred = str(int(round(model.predict(L_res)[0], 0)))
-                    st.markdown(f'# Predicted: {pred} nm in dichloromethane')
+                    pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
+                    pred_plqy = str(int(round(model_plqy.predict(L_res)[0], 0)))
+                    st.markdown(f'# Predicted luminescence wavelength: {pred_lum} nm in dichloromethane')
+                    st.markdown(f'# Predicted PLQY: {pred_plqy} in dichloromethane')
                 else:
                     st.markdown(f'### Found this complex in IrLumDB:')
-                    col1search, col2search, col3search, col4search = st.columns([1, 1, 3, 4])
+                    col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
                     col1search.markdown(f'**λlum,nm**')
+                    col1search.markdown(f'**PLQY**')
                     col2search.markdown(f'**Solvent:**')
                     col3search.markdown(f'**Abbreviation in the source:**')
                     col4search.markdown(f'**Source**')
