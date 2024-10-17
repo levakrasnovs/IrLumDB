@@ -175,7 +175,7 @@ Usage notes:
     model_plqy = XGBRegressor()
     model_plqy.load_model('xgboost_plqy.json')
 
-    if st.button("Search in the database and predict maximum wavelength(nm)"):
+    if st.button("Search in the database and predict properties"):
         if L1 and L2 and L3:
             mol1 = Chem.MolFromSmiles(L1.strip())
             mol2 = Chem.MolFromSmiles(L2.strip())
@@ -192,7 +192,7 @@ Usage notes:
                     L_res = calc(mol1) + calc(mol2) + calc(mol3)
                     L_res = L_res.reshape(1, -1)
                     pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
-                    pred_plqy = str(int(round(model_plqy.predict(L_res)[0], 0)))
+                    pred_plqy = str(int(round(model_plqy.predict(L_res)[0], 3)))
                     st.markdown(f'# Predicted luminescence wavelength: {pred_lum} nm in dichloromethane')
                     st.markdown(f'# Predicted PLQY: {pred_plqy} in dichloromethane')
                 else:
