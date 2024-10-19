@@ -83,7 +83,7 @@ with tabs[0]:
         col1range.markdown(f'**λlum,nm**')
         col2range.markdown(f'**PLQY**')
         col3range.markdown(f'**Solvent:**')
-        col4ange.markdown(f'**Abbreviation in the source:**')
+        col4range.markdown(f'**Abbreviation in the source:**')
         col5range.markdown(f'**Source**')
         col6range.markdown(f'**L1**')
         col7range.markdown(f'**L2**')
