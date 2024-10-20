@@ -245,9 +245,15 @@ with tabs[2]:
         max_value=max_value,
         value=initial_value
     )
+    sort_param = st.radio(
+        "Sort data by:",
+        ["PLQY", "λlum,nm"])
 
     if st.button("Set PLQY range"):
-        range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])]
+        if sort_param == "PLQY":
+            range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
+        else:
+            range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])].sort_values(by='pred_lum', ascending=False)
         num = str(range_df.shape[0])
         st.success(f"Selected range: {slider_value}. Found {num} entries:")
         col1range, col2range, col3range, col4range, col5range, col6range = st.columns([1, 1, 2, 2, 2, 2])
