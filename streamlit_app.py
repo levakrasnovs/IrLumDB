@@ -234,9 +234,9 @@ Usage notes:
             st.error("Please enter all three ligands")
 
 with tabs[2]:
-    min_value = df_pred['pred_PLQY'].min()
-    max_value = df_pred['pred_PLQY'].max()
-    initial_value = (90, 100)
+    min_value = 0
+    max_value = 100
+    initial_value = (80, 100)
     max_interval_length = 20
 
     slider_value = st.slider(
