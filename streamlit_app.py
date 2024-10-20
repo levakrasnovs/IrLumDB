@@ -33,6 +33,8 @@ lum = lum[~lum['QY'].isna()]
 lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
 lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
 
+df_pred = pd.read_csv('dfppy.csv')
+
 col1intro, col2intro = st.columns([2, 1])
 col1intro.markdown("""
 # IrLumDB App v1.0
@@ -46,7 +48,7 @@ The ”IrLumDB App” is an ML-based service integrated with the experimental da
 
 col2intro.image('TOC.png')
 
-tabs = st.tabs(["Explore", "Search and Predict"])
+tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes"])
 
 with tabs[0]:
     fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
@@ -230,3 +232,41 @@ Usage notes:
                 st.error("Incorrect SMILES entered")
         else:
             st.error("Please enter all three ligands")
+
+with tabs[2]:
+    min_value = df_pred['pred_PLQY'].min()
+    max_value = df_pred['pred_PLQY'].max()
+    initial_value = (90, 100)
+    max_interval_length = 20
+
+    slider_value = st.slider(
+        "",
+        min_value=min_value,
+        max_value=max_value,
+        value=initial_value
+    )
+
+    if st.button("Set PLQY range"):
+        range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])]
+        num = str(range_df.shape[0])
+        st.success(f"Selected range: {slider_value}. Found {num} entries:")
+        col1range, col2range, col3range, col4range, col5range, col6range = st.columns([1, 1, 2, 2, 2, 2])
+        col1range.markdown(f'**PLQY**')
+        col2range.markdown(f'**λlum,nm**')
+        col3range.markdown(f'**PubChem**')
+        col4range.markdown(f'**L1**')
+        col5range.markdown(f'**L2**')
+        col6range.markdown(f'**L3**')
+
+        for  plqy, lam, cid, L1, in zip(range_df['pred_PLQY'],
+                                       range_df['pred_lum'],
+                                       range_df['CID'],
+                                       range_df['SMILES']):
+
+            col1, col2, col3, col4, col5, col6, = st.columns([1, 1, 2, 2, 2, 2])
+            col1.markdown(f'**{plqy}%**')
+            col2.markdown(f'**{lam}nm**')
+            col3.markdown(f'**https://pubchem.ncbi.nlm.nih.gov/compound/{cid}**')
+            col4.image(draw_molecule(L1), caption=L1)
+            col5.image(draw_molecule(L1), caption=L1)
+            col6.image(draw_molecule('CC(=O)/C=C(/C)[O-]'), caption='CC(=O)/C=C(/C)[O-]')
