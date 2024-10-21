@@ -255,7 +255,7 @@ with tabs[2]:
         "Sort data by:",
         ["PLQY", "λlum,nm"])
 
-    if st.button("Set wavelength range"):
+    if st.button("Set predicted wavelength range"):
         if sort_param == "PLQY":
             range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
         else:
