@@ -241,10 +241,9 @@ Usage notes:
             st.error("Please enter all three ligands")
 
 with tabs[2]:
-    min_value = 0
-    max_value = 100
-    initial_value = (80, 100)
-    max_interval_length = 20
+    min_value = df_pred['pred_lum'].min()
+    max_value = df_pred['pred_lum'].max()
+    initial_value = (600, 700)
 
     slider_value = st.slider(
         "",
@@ -256,11 +255,11 @@ with tabs[2]:
         "Sort data by:",
         ["PLQY", "λlum,nm"])
 
-    if st.button("Set PLQY range"):
+    if st.button("Set wavelength range"):
         if sort_param == "PLQY":
-            range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
+            range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
         else:
-            range_df = df_pred[(df_pred['pred_PLQY'] <= slider_value[1]) & (df_pred['pred_PLQY'] >= slider_value[0])].sort_values(by='pred_lum', ascending=False)
+            range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_lum', ascending=False)
         num = str(range_df.shape[0])
         st.success(f"Selected range: {slider_value}. Found {num} entries:")
         col1range, col2range, col3range, col4range, col5range, col6range = st.columns([1, 1, 2, 2, 2, 2])
