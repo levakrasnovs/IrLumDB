@@ -119,7 +119,7 @@ with tabs[0]:
 
 with tabs[1]:
 
-    st.markdown("""Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press “Search in the database and predict maximum wavelength (nm)” button to perform the prediction. If the complex exists in the database, experimental data will be displayed. If the complex does not exist in the database, the predicted luminescence wavelength will appear.
+    st.markdown("""Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press “**Search in the database and predict properties**” button to perform the prediction. If the complex exists in the database, experimental data will be displayed. If the complex does not exist in the database, the predicted **λlum** and PLQY will appear.
 
 Usage notes:
 * The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
