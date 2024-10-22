@@ -39,11 +39,11 @@ col1intro, col2intro = st.columns([2, 1])
 col1intro.markdown("""
 # IrLumDB App v1.0
 
-The ”IrLumDB App” is an ML-based service integrated with the experimental database to predict luminescence wavelength of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature.
+The ”IrLumDB App” is an ML-based service integrated with the experimental database to predict luminescence wavelength (**λlum**) and photoluminescence quantum yield (**PLQY**) of bis-cyclometalated iridium(III) complexes requiring only molecular formula of the ligands as a feature.
 
 ### There are currently two operation modes:
 * exploration of the database (**“explore”** window)
-* prediction of luminescence wavelength (**“search and predict”** window)
+* prediction of **λlum** and **PLQY** (**“search and predict”** window)
 """)
 
 col2intro.image('TOC.png')
@@ -240,45 +240,45 @@ Usage notes:
         else:
             st.error("Please enter all three ligands")
 
-with tabs[2]:
-    min_value = df_pred['pred_lum'].min()
-    max_value = df_pred['pred_lum'].max()
-    initial_value = (600, 700)
-
-    slider_value = st.slider(
-        "",
-        min_value=min_value,
-        max_value=max_value,
-        value=initial_value
-    )
-    sort_param = st.radio(
-        "Sort data by:",
-        ["PLQY", "λlum,nm"])
-
-    if st.button("Set predicted wavelength range"):
-        if sort_param == "PLQY":
-            range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
-        else:
-            range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_lum', ascending=False)
-        num = str(range_df.shape[0])
-        st.success(f"Selected range: {slider_value}. Found {num} entries:")
-        col1range, col2range, col3range, col4range, col5range, col6range = st.columns([1, 1, 2, 2, 2, 2])
-        col1range.markdown(f'**PLQY**')
-        col2range.markdown(f'**λlum,nm**')
-        col3range.markdown(f'**PubChem**')
-        col4range.markdown(f'**L1**')
-        col5range.markdown(f'**L2**')
-        col6range.markdown(f'**L3**')
-
-        for  plqy, lam, cid, L1, in zip(range_df['pred_PLQY'],
-                                       range_df['pred_lum'],
-                                       range_df['CID'],
-                                       range_df['SMILES']):
-
-            col1, col2, col3, col4, col5, col6, = st.columns([1, 1, 2, 2, 2, 2])
-            col1.markdown(f'**{plqy}%**')
-            col2.markdown(f'**{lam}nm**')
-            col3.markdown(f'**https://pubchem.ncbi.nlm.nih.gov/compound/{cid}**')
-            col4.image(draw_molecule(L1), caption=L1)
-            col5.image(draw_molecule(L1), caption=L1)
-            col6.image(draw_molecule('CC(=O)/C=C(/C)[O-]'), caption='CC(=O)/C=C(/C)[O-]')
+# with tabs[2]:
+#     min_value = df_pred['pred_lum'].min()
+#     max_value = df_pred['pred_lum'].max()
+#     initial_value = (600, 700)
+#
+#     slider_value = st.slider(
+#         "",
+#         min_value=min_value,
+#         max_value=max_value,
+#         value=initial_value
+#     )
+#     sort_param = st.radio(
+#         "Sort data by:",
+#         ["PLQY", "λlum,nm"])
+#
+#     if st.button("Set predicted wavelength range"):
+#         if sort_param == "PLQY":
+#             range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_PLQY', ascending=False)
+#         else:
+#             range_df = df_pred[(df_pred['pred_lum'] <= slider_value[1]) & (df_pred['pred_lum'] >= slider_value[0])].sort_values(by='pred_lum', ascending=False)
+#         num = str(range_df.shape[0])
+#         st.success(f"Selected range: {slider_value}. Found {num} entries:")
+#         col1range, col2range, col3range, col4range, col5range, col6range = st.columns([1, 1, 2, 2, 2, 2])
+#         col1range.markdown(f'**PLQY**')
+#         col2range.markdown(f'**λlum,nm**')
+#         col3range.markdown(f'**PubChem**')
+#         col4range.markdown(f'**L1**')
+#         col5range.markdown(f'**L2**')
+#         col6range.markdown(f'**L3**')
+#
+#         for  plqy, lam, cid, L1, in zip(range_df['pred_PLQY'],
+#                                        range_df['pred_lum'],
+#                                        range_df['CID'],
+#                                        range_df['SMILES']):
+#
+#             col1, col2, col3, col4, col5, col6, = st.columns([1, 1, 2, 2, 2, 2])
+#             col1.markdown(f'**{plqy}%**')
+#             col2.markdown(f'**{lam}nm**')
+#             col3.markdown(f'**https://pubchem.ncbi.nlm.nih.gov/compound/{cid}**')
+#             col4.image(draw_molecule(L1), caption=L1)
+#             col5.image(draw_molecule(L1), caption=L1)
+#             col6.image(draw_molecule('CC(=O)/C=C(/C)[O-]'), caption='CC(=O)/C=C(/C)[O-]')
