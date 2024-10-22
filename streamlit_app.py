@@ -48,7 +48,8 @@ The ”IrLumDB App” is an ML-based service integrated with the experimental da
 
 col2intro.image('TOC.png')
 
-tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes"])
+# tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes"])
+tabs = st.tabs(["Explore", "Search and Predict"])
 
 with tabs[0]:
     fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
@@ -119,12 +120,12 @@ with tabs[0]:
 
 with tabs[1]:
 
-    st.markdown("""Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press “**Search in the database and predict properties**” button to perform the prediction. If the complex exists in the database, experimental data will be displayed. If the complex does not exist in the database, the predicted **λlum** and PLQY will appear.
+    st.markdown("""Please enter SMILES of the ligands (or draw the structural formula in the corresponding window) and press “**Search in the database and predict properties**” button to perform the prediction. If the complex exists in the database, experimental data will be displayed. If the complex does not exist in the database, the predicted **λlum** and **PLQY** will appear.
 
 Usage notes:
 * The desired complexes usually contain two cyclometalated ligands and one ancillary ligand; thus L1 and L2 should correspond to the cyclometalated ligands and L3 should correspond to the ancillary ligand.
 * Some ligands make formally covalent bonds with the Ir(III) ion. For these a negatively charged bond-forming atom should be drawn in the SMILES of corresponding ligand.
-* The ML model uses only spectroscopic data obtained in **dichloromethane solvent**, thus the predicted luminescence wavelength is aimed to be also in dichloromethane solution of the corresponding complex.
+* The ML model uses only spectroscopic data obtained in **dichloromethane solvent**, thus the predicted **λlum** and **PLQY** is aimed to be also in dichloromethane solution of the corresponding complex.
 
     ### To get SMILES of your ligand, draw custom molecule and click **"Apply"** button or copy SMILES from popular ligands:""")
 
