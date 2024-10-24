@@ -69,10 +69,10 @@ with tabs[0]:
     st.markdown('The “IrLumDB” database contains data about **1454** experimentally measured luminescence spectra of **1287** unique iridium(III) complexes reported in the **340** literature papers. To explore the database, please choose the desired emission wavelength interval below:')
     min_value = 435
     max_value = 938
-    initial_value = (400, 500)
+    initial_value = (500, 600)
 
     slider_value = st.slider(
-        "",
+        label="λlum,nm",
         min_value=min_value,
         max_value=max_value,
         value=initial_value
