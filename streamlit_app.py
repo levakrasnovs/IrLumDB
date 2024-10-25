@@ -251,7 +251,7 @@ with tabs[2]:
         max_value=max_value,
         value=initial_value
     )
-    
+
     sort_param = st.radio(
         "Sort data by:",
         ["PLQY", "λlum,nm"])
@@ -272,12 +272,13 @@ with tabs[2]:
         col5range.markdown(f'**L2**')
         col6range.markdown(f'**L3**')
 
-        for  plqy, lam, cid, L1, in zip(range_df['pred_PLQY'],
+        for plqy, lam, cid, L1, in zip(range_df['pred_PLQY'],
                                        range_df['pred_lum'],
                                        range_df['CID'],
                                        range_df['SMILES_charge']):
 
             col1, col2, col3, col4, col5, col6, = st.columns([1, 1, 2, 2, 2, 2])
+            plqy = plqy*100
             col1.markdown(f'**{plqy}%**')
             col2.markdown(f'**{lam}nm**')
             col3.markdown(f'**https://pubchem.ncbi.nlm.nih.gov/compound/{cid}**')
