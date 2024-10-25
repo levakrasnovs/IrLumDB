@@ -241,16 +241,17 @@ Usage notes:
             st.error("Please enter all three ligands")
 
 with tabs[2]:
-    min_value = df_pred['pred_lum'].min()
-    max_value = df_pred['pred_lum'].max()
-    initial_value = (600, 700)
+    min_value = 400
+    max_value = 810
+    initial_value = (500, 600)
 
     slider_value = st.slider(
-        "λlum,nm",
+        label="λlum,nm",
         min_value=min_value,
         max_value=max_value,
         value=initial_value
     )
+    
     sort_param = st.radio(
         "Sort data by:",
         ["PLQY", "λlum,nm"])
