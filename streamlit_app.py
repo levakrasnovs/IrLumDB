@@ -23,10 +23,7 @@ def check_ligands(mol1, mol2, mol3):
     canonize_l2 = Chem.MolToSmiles(mol2)
     canonize_l3 = Chem.MolToSmiles(mol3)
 
-    if canonize_l1 == canonize_l2 == canonize_l3:
-        st.error("The complex should contain TWO cyclometalated ligands, i.e. TWO ligands with deprotonated carbon as L1 and L2. Your query contains deprotonated carbon in the L3 section. Please correct it.")
-        return False
-    elif (len(mol1.GetAtoms()) < 6) & (len(mol2.GetAtoms()) < 6) & (len(mol3.GetAtoms()) < 6):
+    if (len(mol1.GetAtoms()) < 6) & (len(mol2.GetAtoms()) < 6) & (len(mol3.GetAtoms()) < 6):
         st.error("Only ligands with more than 5 atoms are available for input.")
         return False
     elif contains_only_allowed_atoms(mol1) & contains_only_allowed_atoms(mol2) & contains_only_allowed_atoms(mol3):
@@ -34,6 +31,9 @@ def check_ligands(mol1, mol2, mol3):
         return False
     elif ('[c-]' not in canonize_l1) | ('[c-]' not in canonize_l2):
         st.error("The complex should contain TWO cyclometalated ligands, i.e. TWO ligands with deprotonated carbon as L1 and L2.")
+        return False
+    elif canonize_l1 == canonize_l2 == canonize_l3:
+        st.error("The complex should contain TWO cyclometalated ligands, i.e. TWO ligands with deprotonated carbon as L1 and L2. Your query contains deprotonated carbon in the L3 section. Please correct it.")
         return False
     else:
         return True
