@@ -212,48 +212,49 @@ Usage notes:
             mol2 = Chem.MolFromSmiles(L2.strip())
             mol3 = Chem.MolFromSmiles(L3.strip())
             if (mol1 is not None) & (mol2 is not None) & (mol3 is not None):
-                canonize_l1 = Chem.MolToSmiles(mol1)
-                canonize_l2 = Chem.MolToSmiles(mol2)
-                canonize_l3 = Chem.MolToSmiles(mol3)
-                col1.image(draw_molecule(L1), caption=L1)
-                col2.image(draw_molecule(L2), caption=L2)
-                col3.image(draw_molecule(L3), caption=L3)
-                search_df = df[(df['L1'] == canonize_l1) & (df['L2'] == canonize_l2) & (df['L3'] == canonize_l3)]
-                if (search_df.shape[0] == 0) & (check_ligands(mol1, mol2, mol3)):
-                    L_res = calc(mol1) + calc(mol2) + calc(mol3)
-                    L_res = L_res.reshape(1, -1)
-                    pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
-                    pred_plqy = round(model_plqy.predict(L_res)[0]*100, 1)
-                    str_plqy = str(pred_plqy)
-                    predcol1, predcol2 = st.columns(2)
-                    predcol1.markdown(f'## Predicted luminescence wavelength:')
-                    predcol2.markdown(f'## Predicted PLQY:')
-                    predcol1.markdown(f'### {pred_lum} nm in dichloromethane')
-                    predcol2.markdown(f'### {str_plqy}% in dichloromethane')
-                    if pred_plqy <= 10:
-                        predcol2.image('low_qy.png', width=200)
-                        predcol2.markdown(f'### Low PLQY (0-10%)')
-                    elif 50 >= pred_plqy > 10:
-                        predcol2.image('moderate_qy.png', width=200)
-                        predcol2.markdown(f'### Moderate PLQY (10-50%)')
+                if check_ligands(mol1, mol2, mol3):
+                    canonize_l1 = Chem.MolToSmiles(mol1)
+                    canonize_l2 = Chem.MolToSmiles(mol2)
+                    canonize_l3 = Chem.MolToSmiles(mol3)
+                    col1.image(draw_molecule(L1), caption=L1)
+                    col2.image(draw_molecule(L2), caption=L2)
+                    col3.image(draw_molecule(L3), caption=L3)
+                    search_df = df[(df['L1'] == canonize_l1) & (df['L2'] == canonize_l2) & (df['L3'] == canonize_l3)]
+                    if search_df.shape[0] == 0:
+                        L_res = calc(mol1) + calc(mol2) + calc(mol3)
+                        L_res = L_res.reshape(1, -1)
+                        pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
+                        pred_plqy = round(model_plqy.predict(L_res)[0]*100, 1)
+                        str_plqy = str(pred_plqy)
+                        predcol1, predcol2 = st.columns(2)
+                        predcol1.markdown(f'## Predicted luminescence wavelength:')
+                        predcol2.markdown(f'## Predicted PLQY:')
+                        predcol1.markdown(f'### {pred_lum} nm in dichloromethane')
+                        predcol2.markdown(f'### {str_plqy}% in dichloromethane')
+                        if pred_plqy <= 10:
+                            predcol2.image('low_qy.png', width=200)
+                            predcol2.markdown(f'### Low PLQY (0-10%)')
+                        elif 50 >= pred_plqy > 10:
+                            predcol2.image('moderate_qy.png', width=200)
+                            predcol2.markdown(f'### Moderate PLQY (10-50%)')
+                        else:
+                            predcol2.image('high_qy.png', width=200)
+                            predcol2.markdown(f'### High PLQY (50-100%)')
                     else:
-                        predcol2.image('high_qy.png', width=200)
-                        predcol2.markdown(f'### High PLQY (50-100%)')
-                else:
-                    st.markdown(f'### Found this complex in IrLumDB:')
-                    col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
-                    col1search.markdown(f'**λlum,nm**')
-                    col2search.markdown(f'**PLQY**')
-                    col3search.markdown(f'**Solvent:**')
-                    col4search.markdown(f'**Abbreviation in the source:**')
-                    col5search.markdown(f'**Source**')
-                    for lam, qy, solvent, doi, abbr in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
-                        col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
-                        col1result.markdown(f'**{lam} nm**')
-                        col2result.markdown(f'**{qy}**')
-                        col3result.markdown(f'**{solvent}**')
-                        col4result.markdown(f'**{abbr}**')
-                        col5result.markdown(f'**https://doi.org/{doi}**')
+                        st.markdown(f'### Found this complex in IrLumDB:')
+                        col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
+                        col1search.markdown(f'**λlum,nm**')
+                        col2search.markdown(f'**PLQY**')
+                        col3search.markdown(f'**Solvent:**')
+                        col4search.markdown(f'**Abbreviation in the source:**')
+                        col5search.markdown(f'**Source**')
+                        for lam, qy, solvent, doi, abbr in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
+                            col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
+                            col1result.markdown(f'**{lam} nm**')
+                            col2result.markdown(f'**{qy}**')
+                            col3result.markdown(f'**{solvent}**')
+                            col4result.markdown(f'**{abbr}**')
+                            col5result.markdown(f'**https://doi.org/{doi}**')
             else:
                 st.error("Incorrect SMILES entered")
         else:
