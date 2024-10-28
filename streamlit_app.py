@@ -23,15 +23,11 @@ if "visibility" not in st.session_state:
 
 st.set_page_config(page_title='IrLumDB', layout="wide")
 
-df = pd.read_csv('BigIrDB_v17.csv')
-df['L1'] = df['L1'].apply(lambda x: canonize_smiles(x))
-df['L2'] = df['L2'].apply(lambda x: canonize_smiles(x))
-df['L3'] = df['L3'].apply(lambda x: canonize_smiles(x))
-lum = df[['λlum,nm', 'QY', 'solvent', 'DOI', 'ZEROS']]
-lum = lum[lum['ZEROS'] != 0]
-lum = lum[~lum['QY'].isna()]
-lum['QY'] = lum['QY'].apply(lambda x: float(x.replace('<', '').replace(',','.')))
-lum = lum[lum['solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
+df = pd.read_csv('IrLumDB.csv')
+lum = df[['Max_wavelength(nm)', 'PLQY', 'Solvent', 'DOI', 'PLQY_in_train']]
+lum = lum[lum['PLQY_in_train'] != 0]
+lum = lum[~lum['PLQY'].isna()]
+lum = lum[lum['Solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
 
 df_pred = pd.read_csv('benz_online.csv')
 
@@ -48,20 +44,20 @@ The ”IrLumDB App” is an ML-based service integrated with the experimental da
 
 col2intro.image('TOC.png')
 
-tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes"])
+tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes (Work in progress...)"])
 # tabs = st.tabs(["Explore", "Search and Predict"])
 
 with tabs[0]:
-    fig_lum = px.scatter(lum, x="λlum,nm", y="QY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
+    fig_lum = px.scatter(lum, x="Max_wavelength(nm)", y="PLQY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
     fig_lum.update_layout(yaxis_title='PLQY')
     st.plotly_chart(fig_lum)
 
-    fig_qy = px.histogram(lum, x='QY', nbins=64, title='PLQY distribution in the IrLumDB')
+    fig_qy = px.histogram(lum, x='PLQY', nbins=64, title='PLQY distribution in the IrLumDB')
     fig_qy.update_layout(yaxis_title='Number of entries')
     fig_qy.update_layout(xaxis_title='PLQY')
     st.plotly_chart(fig_qy)
 
-    fig = px.histogram(df, x='λlum,nm', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
+    fig = px.histogram(df, x='Max_wavelength(nm)', nbins=64, title='Maximum wavelength(nm) distribution in the IrLumDB')
     fig.update_layout(yaxis_title='Number of entries')
     st.plotly_chart(fig)
 
@@ -83,9 +79,9 @@ with tabs[0]:
 
     if st.button("Set wavelength range"):
         if sort_param == "λlum,nm":
-            range_df = df[(df['λlum,nm'] <= slider_value[1]) & (df['λlum,nm'] >= slider_value[0])].sort_values(by='λlum,nm')
+            range_df = df[(df['Max_wavelength(nm)'] <= slider_value[1]) & (df['Max_wavelength(nm)'] >= slider_value[0])].sort_values(by='Max_wavelength(nm)')
         else:
-            range_df = df[(df['λlum,nm'] <= slider_value[1]) & (df['λlum,nm'] >= slider_value[0])].sort_values(by='QY', ascending=False)
+            range_df = df[(df['Max_wavelength(nm)'] <= slider_value[1]) & (df['Max_wavelength(nm)'] >= slider_value[0])].sort_values(by='PLQY', ascending=False)
         num = str(range_df.shape[0])
         st.success(f"Selected range: {slider_value}. Found {num} entries:")
         col1range, col2range, col3range, col4range, col5range, col6range, col7range, col8range = st.columns([1, 1, 1, 2, 2, 2, 2, 2])
@@ -98,14 +94,14 @@ with tabs[0]:
         col7range.markdown(f'**L2**')
         col8range.markdown(f'**L3**')
 
-        for lam, plqy, solvent, doi, abbr, L1, L2, L3 in zip(range_df['λlum,nm'],
-                                                       range_df['QY'],
-                                                       range_df['solvent'],
-                                                       range_df['DOI'],
-                                                       range_df['Abbreviation_in_the_article'],
-                                                       range_df['L1'],
-                                                       range_df['L2'],
-                                                       range_df['L3']):
+        for lam, plqy, solvent, doi, abbr, L1, L2, L3 in zip(range_df['Max_wavelength(nm)'],
+                                                           range_df['PLQY'],
+                                                           range_df['Solvent'],
+                                                           range_df['DOI'],
+                                                           range_df['Abbreviation_in_the_article'],
+                                                           range_df['L1'],
+                                                           range_df['L2'],
+                                                           range_df['L3']):
 
             col1, col2, col3, col4, col5, col6, col7, col8 = st.columns([1, 1, 1, 2, 2, 2, 2, 2])
             col1.markdown(f'**{lam} nm**')
@@ -228,7 +224,7 @@ Usage notes:
                     col3search.markdown(f'**Solvent:**')
                     col4search.markdown(f'**Abbreviation in the source:**')
                     col5search.markdown(f'**Source**')
-                    for lam, qy, solvent, doi, abbr in zip(search_df['λlum,nm'], search_df['QY'], search_df['solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
+                    for lam, qy, solvent, doi, abbr in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
                         col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
                         col1result.markdown(f'**{lam} nm**')
                         col2result.markdown(f'**{qy}**')
