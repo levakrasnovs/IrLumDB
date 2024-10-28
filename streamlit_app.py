@@ -48,7 +48,7 @@ tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes (Work in p
 # tabs = st.tabs(["Explore", "Search and Predict"])
 
 with tabs[0]:
-    fig_lum = px.scatter(lum, x="Max_wavelength(nm)", y="PLQY", color="solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
+    fig_lum = px.scatter(lum, x="Max_wavelength(nm)", y="PLQY", color="Solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
     fig_lum.update_layout(yaxis_title='PLQY')
     st.plotly_chart(fig_lum)
 
