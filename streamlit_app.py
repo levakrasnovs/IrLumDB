@@ -26,7 +26,7 @@ def check_ligands(mol1, mol2, mol3):
     if (len(mol1.GetAtoms()) < 6) & (len(mol2.GetAtoms()) < 6) & (len(mol3.GetAtoms()) < 6):
         st.error("Only ligands with more than 5 atoms are available for input.")
         return False
-    elif contains_only_allowed_atoms(mol1) & contains_only_allowed_atoms(mol2) & contains_only_allowed_atoms(mol3):
+    elif (contains_only_allowed_atoms(mol1) & contains_only_allowed_atoms(mol2) & contains_only_allowed_atoms(mol3)):
         st.error("The model can predict molecules containing atoms: C, O, N, Cl, F, S, P.")
         return False
     elif ('[c-]' not in canonize_l1) | ('[c-]' not in canonize_l2):
