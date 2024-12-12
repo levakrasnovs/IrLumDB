@@ -7,6 +7,12 @@ from xgboost import XGBRegressor
 from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
 
+import sklearn
+import xgboost
+print(sklearn.__version__)
+print(xgboost.__version__)
+
+
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
     return Chem.Draw.MolToImage(mol)
