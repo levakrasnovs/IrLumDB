@@ -1,6 +1,5 @@
-catboost
-lightgbm
 xgboost
 streamlit_ketcher
+scikit-learn==1.6.0
 rdkit_pypi==2022.09.3
 molfeat==0.10.0
