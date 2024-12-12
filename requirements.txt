@@ -1,5 +1,5 @@
-streamlit==1.40.0
-xgboost==2.1.2
+streamlit==1.38.0
+xgboost
 streamlit_ketcher
 rdkit_pypi==2022.09.3
 molfeat==0.10.0
