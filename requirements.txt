@@ -1,4 +1,5 @@
 streamlit==1.38.0
+scikit-learn==1.5.2
 xgboost
 streamlit_ketcher
 rdkit_pypi==2022.09.3
