@@ -68,7 +68,6 @@ The ”IrLumDB App” is an ML-based service integrated with the experimental da
 col2intro.image('TOC.png')
 
 tabs = st.tabs(["Explore", "Search and Predict", "Predicted complexes (Work in progress...)"])
-# tabs = st.tabs(["Explore", "Search and Predict"])
 
 with tabs[0]:
     fig_lum = px.scatter(lum, x="Max_wavelength(nm)", y="PLQY", color="Solvent", hover_data={'DOI': True}, title='Space of photophysical properties for bis-cyclometalated iridium(III) complexes')
