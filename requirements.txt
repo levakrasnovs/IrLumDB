@@ -1,6 +1,7 @@
 streamlit
-scikit-learn==1.5.2
 xgboost
 streamlit_ketcher
+plotly
+scikit-learn==1.5.2
 rdkit_pypi==2022.09.3
 molfeat==0.10.0
