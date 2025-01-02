@@ -309,7 +309,7 @@ with tabs[2]:
             "InChI",
             placeholder='InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3',
             key='InChI')
-    if ihcni:
+    if inchi:
         if Chem.MolFromInchi(inchi) is not None:
             smile_code = Chem.MolToSmiles(Chem.MolFromInchi(inchi))
             st.markdown(f"``{smile_code}``")
