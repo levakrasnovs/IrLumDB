@@ -304,3 +304,14 @@ with tabs[2]:
             col4.image(draw_molecule(L1), caption=L1)
             col5.image(draw_molecule(L1), caption=L1)
             col6.image(draw_molecule('CC(=O)/C=C(/C)[O-]'), caption='CC(=O)/C=C(/C)[O-]')
+
+    inchi = st.text_input(
+            "InChI",
+            placeholder='InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3',
+            key='InChI')
+    if Chem.MolFromInchi(inchi) is not None:
+        smile_code = Chem.MolToSmiles(Chem.MolFromInchi(inchi))
+        st.markdown(f"``{smile_code}``")
+        st.image(draw_molecule(smile_code), caption=smile_code)
+    else:
+        st.markdown(f"**Наверный InChI**")
