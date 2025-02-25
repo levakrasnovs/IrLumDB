@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import streamlit as st
 from rdkit import Chem
@@ -6,6 +7,9 @@ from rdkit.Chem import Draw
 from xgboost import XGBRegressor
 from streamlit_ketcher import st_ketcher
 from molfeat.calc import FPCalculator
+
+def hamming_distance(fp1, fp2):
+    return np.sum(fp1 != fp2)
 
 def draw_molecule(smiles):
     mol = Chem.MolFromSmiles(smiles)
@@ -51,6 +55,13 @@ lum = df[['Max_wavelength(nm)', 'PLQY', 'Solvent', 'DOI', 'PLQY_in_train']]
 lum = lum[lum['PLQY_in_train'] != 0]
 lum = lum[~lum['PLQY'].isna()]
 lum = lum[lum['Solvent'].apply(lambda x: x in ['CH2Cl2', 'CH3CN', 'toluene', 'CH3OH', 'THF'])]
+
+df['L1_mol'] = df['L1'].apply(Chem.MolFromSmiles)
+df['L2_mol'] = df['L2'].apply(Chem.MolFromSmiles)
+df['L3_mol'] = df['L3'].apply(Chem.MolFromSmiles)
+df[f'L1_ecfp'] = df['L1_mol'].apply(lambda x: calc(x))
+df[f'L2_ecfp'] = df['L2_mol'].apply(lambda x: calc(x))
+df[f'L3_ecfp'] = df['L3_mol'].apply(lambda x: calc(x))
 
 df_pred = pd.read_csv('benz_online.csv')
 
@@ -220,7 +231,10 @@ Usage notes:
                     col3.image(draw_molecule(L3), caption=L3)
                     search_df = df[(df['L1'] == canonize_l1) & (df['L2'] == canonize_l2) & (df['L3'] == canonize_l3)]
                     if search_df.shape[0] == 0:
-                        L_res = calc(mol1) + calc(mol2) + calc(mol3)
+                        L1_res_ecfp = calc(mol1)
+                        L2_res_ecfp = calc(mol2)
+                        L3_res_ecfp = calc(mol3)
+                        L_res = L1_res_ecfp + L2_res_ecfp + L3_res_ecfp
                         L_res = L_res.reshape(1, -1)
                         pred_lum = str(int(round(model_lum.predict(L_res)[0], 0)))
                         pred_plqy = round(model_plqy.predict(L_res)[0]*100, 1)
@@ -239,6 +253,23 @@ Usage notes:
                         else:
                             predcol2.image('high_qy.png', width=200)
                             predcol2.markdown(f'### High PLQY (50-100%)')
+                        df['res_dist'] = df['L1_ecfp'].apply(lambda ecfp1: hamming_distance(L1_res_ecfp, ecfp1)) + df['L1_ecfp'].apply(lambda ecfp2: hamming_distance(L2_res_ecfp, ecfp2)) + df['L3_ecfp'].apply(lambda ecfp3: hamming_distance(L3_res_ecfp, ecfp3))
+                        search_df = df[df['res_dist'] == df['res_dist'].min()]
+                        
+                        st.markdown(f'### Below are shown the most similar complexes found in the IrLumDB:')
+                        col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
+                        col1search.markdown(f'**λlum,nm**')
+                        col2search.markdown(f'**PLQY**')
+                        col3search.markdown(f'**Solvent:**')
+                        col4search.markdown(f'**Abbreviation in the source:**')
+                        col5search.markdown(f'**Source**')
+                        for lam, qy, solvent, doi, abbr in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
+                            col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
+                            col1result.markdown(f'**{lam} nm**')
+                            col2result.markdown(f'**{qy}**')
+                            col3result.markdown(f'**{solvent}**')
+                            col4result.markdown(f'**{abbr}**')
+                            col5result.markdown(f'**https://doi.org/{doi}**')
                     else:
                         st.markdown(f'### Found this complex in IrLumDB:')
                         col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
