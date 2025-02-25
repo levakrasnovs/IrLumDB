@@ -257,12 +257,34 @@ Usage notes:
                         search_df = df[df['res_dist'] == df['res_dist'].min()]
 
                         st.markdown(f'### Below are shown the most similar complexes found in the IrLumDB:')
-                        col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
+                        col1search, col2search, col3search, col4search, col5search, col6search, col7search, col8search = st.columns([1, 1, 1, 1, 1, 2, 2, 2])
+                        col1search.markdown(f'**λlum,nm**')
+                        col2search.markdown(f'**PLQY**')
+                        col3search.markdown(f'**Solvent**')
+                        col4search.markdown(f'**Abbreviation**')
+                        col5search.markdown(f'**Source**')
+                        col6search.markdown(f'**L1**')
+                        col7search.markdown(f'**L2**')
+                        col8search.markdown(f'**L3**')
+                        for lam, qy, solvent, doi, abbr, L1_df, L2_df, L3_df in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article'], search_df['L1'], search_df['L2'], search_df['L3']):
+                            col1result, col2result, col3result, col4result, col5result, col6result, col7result, col8result = st.columns([1, 1, 1, 1, 1, 2, 2, 2])
+                            col1result.markdown(f'**{lam} nm**')
+                            col2result.markdown(f'**{qy}**')
+                            col3result.markdown(f'**{solvent}**')
+                            col4result.markdown(f'**{abbr}**')
+                            col5result.markdown(f'**https://doi.org/{doi}**')
+                            col6result.image(draw_molecule(L1_df), caption=L1_df)
+                            col7result.image(draw_molecule(L2_df), caption=L2_df)
+                            col8result.image(draw_molecule(L3_df), caption=L3_df)
+                    else:
+                        st.markdown(f'### Found this complex in IrLumDB:')
+                        col1search, col2search, col3search, col4search, col5search, col6search, col7search, col8search = st.columns([1, 1, 1, 3, 4])
                         col1search.markdown(f'**λlum,nm**')
                         col2search.markdown(f'**PLQY**')
                         col3search.markdown(f'**Solvent:**')
                         col4search.markdown(f'**Abbreviation in the source:**')
                         col5search.markdown(f'**Source**')
+
                         for lam, qy, solvent, doi, abbr in zip(search_df['Max_wavelength(nm)'], search_df['PLQY'], search_df['Solvent'], search_df['DOI'], search_df['Abbreviation_in_the_article']):
                             col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 3, 4])
                             col1result.markdown(f'**{lam} nm**')
@@ -270,35 +292,7 @@ Usage notes:
                             col3result.markdown(f'**{solvent}**')
                             col4result.markdown(f'**{abbr}**')
                             col5result.markdown(f'**https://doi.org/{doi}**')
-                    else:
-                        st.markdown(f'### Found this complex in IrLumDB:')
-                        col1search, col2search, col3search, col4search, col5search, col6search, col7search, col8search = st.columns([1, 1, 1, 1, 1, 2, 2, 2])
-                        col1search.markdown(f'**λlum,nm**')
-                        col2search.markdown(f'**PLQY**')
-                        col3search.markdown(f'**Solvent:**')
-                        col4search.markdown(f'**Abbreviation:**')
-                        col5search.markdown(f'**Source**')
-                        col6search.markdown(f'**L1**')
-                        col7search.markdown(f'**L2**')
-                        col8search.markdown(f'**L3**')
 
-                        for lam, qy, solvent, doi, abbr, L1_df, L2_df, L3_df in zip(search_df['Max_wavelength(nm)'],
-                                                                                    search_df['PLQY'],
-                                                                                    search_df['Solvent'],
-                                                                                    search_df['DOI'],
-                                                                                    search_df['Abbreviation_in_the_article'],
-                                                                                    search_df['L1'],
-                                                                                    search_df['L2'],
-                                                                                    search_df['L3']):
-                            col1result, col2result, col3result, col4result, col5result = st.columns([1, 1, 1, 1, 1, 2, 2, 2])
-                            col1result.markdown(f'**{lam} nm**')
-                            col2result.markdown(f'**{qy}**')
-                            col3result.markdown(f'**{solvent}**')
-                            col4result.markdown(f'**{abbr}**')
-                            col5result.markdown(f'**https://doi.org/{doi}**')
-                            col6search.image(draw_molecule(L1_df), caption=L1_df)
-                            col7search.image(draw_molecule(L2_df), caption=L2_df)
-                            col8search.image(draw_molecule(L3_df), caption=L3_df)
             else:
                 st.error("Incorrect SMILES entered")
         else:
