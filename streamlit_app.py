@@ -278,7 +278,7 @@ Usage notes:
                             col8result.image(draw_molecule(L3_df), caption=L3_df)
                     else:
                         st.markdown(f'### Found this complex in IrLumDB:')
-                        col1search, col2search, col3search, col4search, col5search, col6search, col7search, col8search = st.columns([1, 1, 1, 3, 4])
+                        col1search, col2search, col3search, col4search, col5search = st.columns([1, 1, 1, 3, 4])
                         col1search.markdown(f'**λlum,nm**')
                         col2search.markdown(f'**PLQY**')
                         col3search.markdown(f'**Solvent:**')
