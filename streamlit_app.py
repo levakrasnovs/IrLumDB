@@ -74,6 +74,10 @@ The ”IrLumDB App” is an ML-based service integrated with the experimental da
 ### There are currently two operation modes:
 * exploration of the database (**“explore”** window)
 * prediction of **λlum** and **PLQY** (**“search and predict”** window)
+
+If you are using our database or the App please cite: **Towards Accelerating the Discovery of Efficient Iridium(III) Emitters Using Novel Database and Machine Learning Based Only on Structural Formula**, J. Mater. Chem. C, 2025, https://doi.org/10.1039/D5TC00305A.
+
+Download dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13987455.svg)](https://doi.org/10.5281/zenodo.13987455)
 """)
 
 col2intro.image('TOC.png')
